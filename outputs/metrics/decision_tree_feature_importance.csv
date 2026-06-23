@@ -1,0 +1,177 @@
+﻿split_id,model_name,feature,importance
+1,decision_tree_entropy,淨值報酬率─稅後,0.2846362381282564
+1,decision_tree_entropy,稅後淨利成長率,0.16511832532919954
+1,decision_tree_entropy,市值(百萬元),0.16474722551984328
+1,decision_tree_entropy,收盤價(元)_年,0.14280603653578738
+1,decision_tree_entropy,股價營收比,0.12826233394027817
+1,decision_tree_entropy,負債/淨值比,0.0745499927009927
+1,decision_tree_entropy,營業利益成長率,0.039879847845642406
+1,decision_tree_entropy,Unknown masked parameter,0.0
+1,decision_tree_entropy,股價淨值比,0.0
+1,decision_tree_entropy,資產報酬率 ROA,0.0
+1,decision_tree_entropy,營業利益率 OPM,0.0
+1,decision_tree_entropy,利潤邊際 NPM,0.0
+1,decision_tree_entropy,流動比率,0.0
+1,decision_tree_entropy,速動比率,0.0
+1,decision_tree_entropy,存貨週轉率 (次),0.0
+1,decision_tree_entropy,應收帳款週轉次,0.0
+2,decision_tree_entropy,淨值報酬率─稅後,0.2866432828938157
+2,decision_tree_entropy,市值(百萬元),0.15901626757134799
+2,decision_tree_entropy,資產報酬率 ROA,0.1142953420420387
+2,decision_tree_entropy,速動比率,0.1076409732253008
+2,decision_tree_entropy,應收帳款週轉次,0.10308739651747009
+2,decision_tree_entropy,收盤價(元)_年,0.07316076510213584
+2,decision_tree_entropy,股價營收比,0.07004942992774084
+2,decision_tree_entropy,營業利益率 OPM,0.04376096436941042
+2,decision_tree_entropy,Unknown masked parameter,0.03276226243771733
+2,decision_tree_entropy,負債/淨值比,0.009583315913022255
+2,decision_tree_entropy,股價淨值比,0.0
+2,decision_tree_entropy,利潤邊際 NPM,0.0
+2,decision_tree_entropy,流動比率,0.0
+2,decision_tree_entropy,存貨週轉率 (次),0.0
+2,decision_tree_entropy,營業利益成長率,0.0
+2,decision_tree_entropy,稅後淨利成長率,0.0
+3,decision_tree_entropy,淨值報酬率─稅後,0.25756837725645443
+3,decision_tree_entropy,稅後淨利成長率,0.1577151820931791
+3,decision_tree_entropy,股價營收比,0.13440919874690152
+3,decision_tree_entropy,收盤價(元)_年,0.11399727160826968
+3,decision_tree_entropy,應收帳款週轉次,0.08420389356604213
+3,decision_tree_entropy,市值(百萬元),0.07377749939839005
+3,decision_tree_entropy,股價淨值比,0.06598837499055432
+3,decision_tree_entropy,負債/淨值比,0.04071121358757352
+3,decision_tree_entropy,速動比率,0.040140445347847484
+3,decision_tree_entropy,資產報酬率 ROA,0.03148854340478782
+3,decision_tree_entropy,Unknown masked parameter,0.0
+3,decision_tree_entropy,營業利益率 OPM,0.0
+3,decision_tree_entropy,利潤邊際 NPM,0.0
+3,decision_tree_entropy,流動比率,0.0
+3,decision_tree_entropy,存貨週轉率 (次),0.0
+3,decision_tree_entropy,營業利益成長率,0.0
+4,decision_tree_entropy,淨值報酬率─稅後,0.25249417677942926
+4,decision_tree_entropy,速動比率,0.1678513672677211
+4,decision_tree_entropy,股價營收比,0.16024663240272677
+4,decision_tree_entropy,流動比率,0.06887689041072309
+4,decision_tree_entropy,營業利益率 OPM,0.060993405865824746
+4,decision_tree_entropy,市值(百萬元),0.0572570032108226
+4,decision_tree_entropy,股價淨值比,0.05622667120255583
+4,decision_tree_entropy,稅後淨利成長率,0.04910159418199665
+4,decision_tree_entropy,收盤價(元)_年,0.04855093041687616
+4,decision_tree_entropy,應收帳款週轉次,0.04401073062149504
+4,decision_tree_entropy,存貨週轉率 (次),0.03439059763982882
+4,decision_tree_entropy,Unknown masked parameter,0.0
+4,decision_tree_entropy,資產報酬率 ROA,0.0
+4,decision_tree_entropy,利潤邊際 NPM,0.0
+4,decision_tree_entropy,負債/淨值比,0.0
+4,decision_tree_entropy,營業利益成長率,0.0
+5,decision_tree_entropy,股價營收比,0.29076799728974856
+5,decision_tree_entropy,淨值報酬率─稅後,0.1951837210356375
+5,decision_tree_entropy,存貨週轉率 (次),0.09424399849019617
+5,decision_tree_entropy,速動比率,0.08188017949277128
+5,decision_tree_entropy,利潤邊際 NPM,0.08033597734285368
+5,decision_tree_entropy,負債/淨值比,0.06474436704201685
+5,decision_tree_entropy,Unknown masked parameter,0.05562075476413461
+5,decision_tree_entropy,應收帳款週轉次,0.04865926271228707
+5,decision_tree_entropy,市值(百萬元),0.04729310335499737
+5,decision_tree_entropy,收盤價(元)_年,0.041270638475356995
+5,decision_tree_entropy,股價淨值比,0.0
+5,decision_tree_entropy,資產報酬率 ROA,0.0
+5,decision_tree_entropy,營業利益率 OPM,0.0
+5,decision_tree_entropy,流動比率,0.0
+5,decision_tree_entropy,營業利益成長率,0.0
+5,decision_tree_entropy,稅後淨利成長率,0.0
+6,decision_tree_entropy,股價淨值比,0.2190882116086198
+6,decision_tree_entropy,資產報酬率 ROA,0.15267032434564237
+6,decision_tree_entropy,淨值報酬率─稅後,0.14063081412237452
+6,decision_tree_entropy,流動比率,0.08193547087206812
+6,decision_tree_entropy,股價營收比,0.08119511851238138
+6,decision_tree_entropy,營業利益成長率,0.07305626390578675
+6,decision_tree_entropy,速動比率,0.06442241197523352
+6,decision_tree_entropy,稅後淨利成長率,0.04687926574763618
+6,decision_tree_entropy,利潤邊際 NPM,0.0450956158556868
+6,decision_tree_entropy,市值(百萬元),0.0331130825592628
+6,decision_tree_entropy,Unknown masked parameter,0.02294796589503697
+6,decision_tree_entropy,營業利益率 OPM,0.02046918281575477
+6,decision_tree_entropy,存貨週轉率 (次),0.018496271784516106
+6,decision_tree_entropy,收盤價(元)_年,0.0
+6,decision_tree_entropy,負債/淨值比,0.0
+6,decision_tree_entropy,應收帳款週轉次,0.0
+7,decision_tree_entropy,股價淨值比,0.2804270605999661
+7,decision_tree_entropy,股價營收比,0.16639901321338557
+7,decision_tree_entropy,市值(百萬元),0.15206548773511994
+7,decision_tree_entropy,應收帳款週轉次,0.09547148885888464
+7,decision_tree_entropy,資產報酬率 ROA,0.07318267074820108
+7,decision_tree_entropy,利潤邊際 NPM,0.0671363535570315
+7,decision_tree_entropy,速動比率,0.05593907959934105
+7,decision_tree_entropy,存貨週轉率 (次),0.04885646125916676
+7,decision_tree_entropy,流動比率,0.03909920627573982
+7,decision_tree_entropy,稅後淨利成長率,0.02142317815316349
+7,decision_tree_entropy,收盤價(元)_年,0.0
+7,decision_tree_entropy,Unknown masked parameter,0.0
+7,decision_tree_entropy,淨值報酬率─稅後,0.0
+7,decision_tree_entropy,營業利益率 OPM,0.0
+7,decision_tree_entropy,負債/淨值比,0.0
+7,decision_tree_entropy,營業利益成長率,0.0
+8,decision_tree_entropy,股價淨值比,0.2644228216907726
+8,decision_tree_entropy,淨值報酬率─稅後,0.16288488704242596
+8,decision_tree_entropy,營業利益率 OPM,0.10054391331521247
+8,decision_tree_entropy,利潤邊際 NPM,0.09303209082846747
+8,decision_tree_entropy,存貨週轉率 (次),0.09179715096097582
+8,decision_tree_entropy,股價營收比,0.08413855894041841
+8,decision_tree_entropy,收盤價(元)_年,0.06263584095926673
+8,decision_tree_entropy,Unknown masked parameter,0.051416790247676154
+8,decision_tree_entropy,市值(百萬元),0.03979232901023206
+8,decision_tree_entropy,營業利益成長率,0.028071764218846322
+8,decision_tree_entropy,應收帳款週轉次,0.021263852785705865
+8,decision_tree_entropy,資產報酬率 ROA,0.0
+8,decision_tree_entropy,負債/淨值比,0.0
+8,decision_tree_entropy,流動比率,0.0
+8,decision_tree_entropy,速動比率,0.0
+8,decision_tree_entropy,稅後淨利成長率,0.0
+9,decision_tree_entropy,股價淨值比,0.29591454270857054
+9,decision_tree_entropy,淨值報酬率─稅後,0.1582598458154496
+9,decision_tree_entropy,股價營收比,0.08498261469845604
+9,decision_tree_entropy,Unknown masked parameter,0.07450716845194175
+9,decision_tree_entropy,稅後淨利成長率,0.07367701731239203
+9,decision_tree_entropy,營業利益率 OPM,0.07270506676403654
+9,decision_tree_entropy,存貨週轉率 (次),0.06970470608415263
+9,decision_tree_entropy,利潤邊際 NPM,0.03590086352485433
+9,decision_tree_entropy,負債/淨值比,0.031224440226812006
+9,decision_tree_entropy,速動比率,0.027369919299050836
+9,decision_tree_entropy,市值(百萬元),0.025806675127771263
+9,decision_tree_entropy,資產報酬率 ROA,0.023628073517334966
+9,decision_tree_entropy,營業利益成長率,0.016965669065589634
+9,decision_tree_entropy,收盤價(元)_年,0.009353397403587873
+9,decision_tree_entropy,流動比率,0.0
+9,decision_tree_entropy,應收帳款週轉次,0.0
+10,decision_tree_entropy,股價淨值比,0.21929266117382523
+10,decision_tree_entropy,資產報酬率 ROA,0.18372646478896118
+10,decision_tree_entropy,市值(百萬元),0.16172409807689808
+10,decision_tree_entropy,營業利益率 OPM,0.0999660877131022
+10,decision_tree_entropy,淨值報酬率─稅後,0.07853995280804171
+10,decision_tree_entropy,存貨週轉率 (次),0.06095619410223043
+10,decision_tree_entropy,稅後淨利成長率,0.05438802599766524
+10,decision_tree_entropy,負債/淨值比,0.04953867799181524
+10,decision_tree_entropy,速動比率,0.03630140009809677
+10,decision_tree_entropy,Unknown masked parameter,0.0318403802498225
+10,decision_tree_entropy,營業利益成長率,0.0237260569995415
+10,decision_tree_entropy,收盤價(元)_年,0.0
+10,decision_tree_entropy,股價營收比,0.0
+10,decision_tree_entropy,利潤邊際 NPM,0.0
+10,decision_tree_entropy,流動比率,0.0
+10,decision_tree_entropy,應收帳款週轉次,0.0
+11,decision_tree_entropy,股價淨值比,0.2147480770557886
+11,decision_tree_entropy,資產報酬率 ROA,0.14498957042914537
+11,decision_tree_entropy,市值(百萬元),0.1390809452274294
+11,decision_tree_entropy,淨值報酬率─稅後,0.08812345695728904
+11,decision_tree_entropy,營業利益率 OPM,0.08151326928895081
+11,decision_tree_entropy,營業利益成長率,0.056472300659158085
+11,decision_tree_entropy,收盤價(元)_年,0.05372849806850881
+11,decision_tree_entropy,應收帳款週轉次,0.05093076574607449
+11,decision_tree_entropy,存貨週轉率 (次),0.049376701006184104
+11,decision_tree_entropy,利潤邊際 NPM,0.03210763541521014
+11,decision_tree_entropy,Unknown masked parameter,0.031276305805787996
+11,decision_tree_entropy,股價營收比,0.028846545366744917
+11,decision_tree_entropy,流動比率,0.02880592897372827
+11,decision_tree_entropy,負債/淨值比,0.0
+11,decision_tree_entropy,速動比率,0.0
+11,decision_tree_entropy,稅後淨利成長率,0.0

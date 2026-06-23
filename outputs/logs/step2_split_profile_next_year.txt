@@ -1,0 +1,44 @@
+========== Step 2 Temporal Validation Profile: next_year ==========
+
+Dataset summary:
+- Total rows: 2400
+- Year range: 1997 - 2008
+- Number of years: 12
+
+Rows by year:
+- 1997: 200 rows
+- 1998: 200 rows
+- 1999: 200 rows
+- 2000: 200 rows
+- 2001: 200 rows
+- 2002: 200 rows
+- 2003: 200 rows
+- 2004: 200 rows
+- 2005: 200 rows
+- 2006: 200 rows
+- 2007: 200 rows
+- 2008: 200 rows
+
+Split summary:
+- Validation mode: next_year
+- Number of splits: 11
+- Leakage-free: True
+
+Detailed splits:
+ split_id                                            train_years test_years  train_rows  test_rows  train_label_neg1_count  train_label_pos1_count  test_label_neg1_count  test_label_pos1_count  leakage_free
+        1                                                   1997       1998         200        200                     109                      91                    126                     74          True
+        2                                              1997,1998       1999         400        200                     235                     165                    111                     89          True
+        3                                         1997,1998,1999       2000         600        200                     346                     254                    127                     73          True
+        4                                    1997,1998,1999,2000       2001         800        200                     473                     327                    118                     82          True
+        5                               1997,1998,1999,2000,2001       2002        1000        200                     591                     409                    116                     84          True
+        6                          1997,1998,1999,2000,2001,2002       2003        1200        200                     707                     493                     98                    102          True
+        7                     1997,1998,1999,2000,2001,2002,2003       2004        1400        200                     805                     595                    130                     70          True
+        8                1997,1998,1999,2000,2001,2002,2003,2004       2005        1600        200                     935                     665                    112                     88          True
+        9           1997,1998,1999,2000,2001,2002,2003,2004,2005       2006        1800        200                    1047                     753                    115                     85          True
+       10      1997,1998,1999,2000,2001,2002,2003,2004,2005,2006       2007        2000        200                    1162                     838                    112                     88          True
+       11 1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007       2008        2200        200                    1274                     926                    117                     83          True
+
+Interpretation:
+- This mode is used as the main portfolio backtesting design. Each testing year corresponds to one annual investment period.
+
+========== End of Step 2 Profile ==========

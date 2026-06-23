@@ -1,0 +1,49 @@
+========== Step 6 SVR-GA Regression Profile ==========
+
+Model:
+- svr_ga_regression
+
+Target:
+- Regression target: Return
+- Portfolio ranking score: predicted_return
+
+Validation design:
+- Outer validation: next-year expanding-window temporal validation
+- GA hyperparameter search uses only outer training years
+- Testing year is not used in GA search or model fitting
+
+Split summary:
+ split_id                                            train_years test_years                                                                                                     inner_validation_method      best_C  best_gamma  best_epsilon  best_validation_rmse  best_validation_mae  best_validation_r2  n_outer_train  n_test                                                                        saved_model_path
+        1                                                   1997       1998                                                              single_training_year_random_holdout: year=1997, test_size=0.25  372.288045    0.006352      0.057686             22.752822            15.849258            0.317692            200     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_01.joblib
+        2                                              1997,1998       1999                                                       last_training_year_validation: inner_train=[1997], inner_valid=[1998]  354.588664    0.097981      0.042290             71.173516            47.336218           -0.094963            400     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_02.joblib
+        3                                         1997,1998,1999       2000                                                 last_training_year_validation: inner_train=[1997, 1998], inner_valid=[1999]   10.136744    0.009365      0.294934             39.887285            34.136726           -0.817563            600     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_03.joblib
+        4                                    1997,1998,1999,2000       2001                                           last_training_year_validation: inner_train=[1997, 1998, 1999], inner_valid=[2000]  508.679501    0.627287      0.484524             90.919772            59.448275           -0.295785            800     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_04.joblib
+        5                               1997,1998,1999,2000,2001       2002                                     last_training_year_validation: inner_train=[1997, 1998, 1999, 2000], inner_valid=[2001]   34.582447    0.062296      0.171385             48.165247            34.361629            0.051299           1000     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_05.joblib
+        6                          1997,1998,1999,2000,2001,2002       2003                               last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001], inner_valid=[2002]  429.250639    0.070836     31.622777             52.029841            39.197623           -0.742164           1200     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_06.joblib
+        7                     1997,1998,1999,2000,2001,2002,2003       2004                         last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001, 2002], inner_valid=[2003]   12.932874    0.042892     31.622777             33.547727            27.047469            0.121343           1400     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_07.joblib
+        8                1997,1998,1999,2000,2001,2002,2003,2004       2005                   last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001, 2002, 2003], inner_valid=[2004]   98.364346    0.047059      0.032719             58.519510            38.682742           -0.068569           1600     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_08.joblib
+        9           1997,1998,1999,2000,2001,2002,2003,2004,2005       2006             last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004], inner_valid=[2005] 7887.063730    0.005054      0.032963             59.491708            41.963398           -0.378096           1800     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_09.joblib
+       10      1997,1998,1999,2000,2001,2002,2003,2004,2005,2006       2007       last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005], inner_valid=[2006]    2.321092    0.008473     31.165772             42.416329            30.042581           -0.015494           2000     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_10.joblib
+       11 1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007       2008 last_training_year_validation: inner_train=[1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006], inner_valid=[2007]    3.426518    0.043185      1.137878             48.279612            45.225349           -4.733091           2200     200 C:\Users\user\Documents\project\FineTech\saved_models\svr_ga_regression_split_11.joblib
+
+Regression metrics:
+       model_name   scope split_id test_years  n_samples        mae       rmse        r2  pearson_corr  spearman_corr
+svr_ga_regression   split        1       1998        200  48.510643  72.359190 -0.131748      0.116483       0.152966
+svr_ga_regression   split        2       1999        200  41.138977  49.566991 -1.806762      0.145210       0.192574
+svr_ga_regression   split        3       2000        200  60.182298  97.036680 -0.476006      0.103119       0.132408
+svr_ga_regression   split        4       2001        200  41.760696  57.084970 -0.332616      0.081225       0.147535
+svr_ga_regression   split        5       2002        200  47.765930  60.181375 -1.330817      0.126903       0.109023
+svr_ga_regression   split        6       2003        200  29.407936  36.669121 -0.049769      0.219785       0.247801
+svr_ga_regression   split        7       2004        200  37.283235  58.429421 -0.065282      0.138794       0.119153
+svr_ga_regression   split        8       2005        200  42.203112  60.076031 -0.405300      0.243995       0.271185
+svr_ga_regression   split        9       2006        200  32.326250  45.508483 -0.168950      0.207867       0.248244
+svr_ga_regression   split       10       2007        200  50.315747  53.393440 -6.011922      0.183751       0.248217
+svr_ga_regression   split       11       2008        200 113.137829 135.066426 -2.269772      0.171640       0.206858
+svr_ga_regression overall  overall  1998-2008       2200  49.457514  71.045389 -0.156315      0.022314       0.022924
+
+Generated files:
+- Predictions: C:\Users\user\Documents\project\FineTech\outputs\predictions\svr_ga_regression_predictions.csv
+- Regression metrics: C:\Users\user\Documents\project\FineTech\outputs\metrics\svr_ga_regression_metrics.csv
+- GA search log: C:\Users\user\Documents\project\FineTech\outputs\metrics\svr_ga_search_log.csv
+
+========== End of Step 6 Profile ==========

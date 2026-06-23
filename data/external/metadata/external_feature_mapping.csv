@@ -1,0 +1,17 @@
+﻿original_feature,external_feature_name,source,formula,available,missing_ratio,used_in_model,limitation
+流動比率,,,,no,1.0,no,Not yet reconstructed from external data source.
+速動比率,,,,no,1.0,no,Not yet reconstructed from external data source.
+存貨週轉率 (次),,,,no,1.0,no,Not yet reconstructed from external data source.
+應收帳款週轉次,,,,no,1.0,no,Not yet reconstructed from external data source.
+稅後淨利成長率,net_income_growth_proxy,FinMind FinancialStatements,(net income_t - net income_t-1) / |net income_t-1| × 100,yes,0.20674740484429066,yes,First year per stock is missing because YoY growth requires prior-year net income.
+營業利益率 OPM,OPM_proxy,FinMind FinancialStatements,operating income / revenue × 100,yes,0.18858131487889274,yes,Computed proxy; dependent on income statement item matching.
+淨值報酬率─稅後,ROE_proxy,FinMind FinancialStatements + BalanceSheet,net income / average total equity × 100,yes,0.17906574394463667,yes,Computed proxy; may differ from TEJ or course dataset definition.
+負債/淨值比,,,,yes,0.17474048442906576,yes,Not yet reconstructed from external data source.
+營業利益成長率,revenue_growth_proxy / operating growth proxy,FinMind MonthRevenue or FinancialStatements,annual revenue growth or operating income growth,yes,0.14878892733564014,yes,Currently may use revenue growth proxy when operating income growth is unavailable.
+股價營收比,price_to_sales_proxy,FinMind financial statements + price,market capitalization / annual revenue,yes,0.078719723183391,yes,Depends on revenue and market capitalization availability.
+利潤邊際 NPM,NPM_proxy,FinMind FinancialStatements,net income / revenue × 100,yes,0.07785467128027682,yes,Computed proxy; dependent on income statement item matching.
+股價淨值比,PBR,FinMind TaiwanStockPER,year-end price-to-book ratio,yes,0.0657439446366782,yes,Uses available year-end PBR proxy.
+Unknown masked parameter,PER proxy,FinMind TaiwanStockPER,year-end PER-like valuation proxy,yes,0.0657439446366782,yes,Original variable is masked; external value is treated as a valuation proxy.
+資產報酬率 ROA,ROA_proxy,FinMind FinancialStatements + BalanceSheet,net income / average total assets × 100,yes,0.05709342560553633,yes,Computed proxy; dependent on balance sheet item matching.
+市值(百萬元),market_cap_million,FinMind BalanceSheet + FinMind/yfinance price,"year-end close price × estimated shares outstanding / 1,000,000",yes,0.052768166089965395,yes,Shares outstanding are estimated from share capital and par value; may differ from official market capitalization.
+收盤價(元)_年,year-end anchor close price,FinMind TaiwanStockPrice / yfinance fallback,first available trading close price in December,yes,0.0,yes,"Uses December anchor price, which approximates the original December price definition."

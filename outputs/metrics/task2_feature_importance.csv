@@ -1,0 +1,529 @@
+﻿split_id,model_name,feature,importance,signed_coefficient,importance_type
+1,logistic_regression,速動比率,0.8515013149810087,0.8515013149810087,abs_logistic_coefficient
+1,logistic_regression,市值(百萬元),0.7725913296413099,0.7725913296413099,abs_logistic_coefficient
+1,logistic_regression,存貨週轉率 (次),0.7246079744526337,-0.7246079744526337,abs_logistic_coefficient
+1,logistic_regression,股價淨值比,0.7230047943670538,0.7230047943670538,abs_logistic_coefficient
+1,logistic_regression,收盤價(元)_年,0.689158308630077,-0.689158308630077,abs_logistic_coefficient
+1,logistic_regression,資產報酬率 ROA,0.6342816164584338,0.6342816164584338,abs_logistic_coefficient
+1,logistic_regression,應收帳款週轉次,0.5588998732908459,0.5588998732908459,abs_logistic_coefficient
+1,logistic_regression,流動比率,0.5343472351915116,-0.5343472351915116,abs_logistic_coefficient
+1,logistic_regression,利潤邊際 NPM,0.488104977106309,-0.488104977106309,abs_logistic_coefficient
+1,logistic_regression,營業利益率 OPM,0.20185020995183192,0.20185020995183192,abs_logistic_coefficient
+1,logistic_regression,營業利益成長率,0.13096488811579696,-0.13096488811579696,abs_logistic_coefficient
+1,logistic_regression,股價營收比,0.12386127015196938,-0.12386127015196938,abs_logistic_coefficient
+1,logistic_regression,負債/淨值比,0.047212953499710594,-0.047212953499710594,abs_logistic_coefficient
+1,logistic_regression,淨值報酬率─稅後,0.04142680925549326,0.04142680925549326,abs_logistic_coefficient
+1,logistic_regression,稅後淨利成長率,0.04141135866779376,0.04141135866779376,abs_logistic_coefficient
+1,logistic_regression,Unknown masked parameter,0.008212330164507411,0.008212330164507411,abs_logistic_coefficient
+2,logistic_regression,市值(百萬元),0.8327806772128293,0.8327806772128293,abs_logistic_coefficient
+2,logistic_regression,淨值報酬率─稅後,0.8195814544357728,0.8195814544357728,abs_logistic_coefficient
+2,logistic_regression,速動比率,0.7876557545232664,0.7876557545232664,abs_logistic_coefficient
+2,logistic_regression,流動比率,0.5646101271727838,-0.5646101271727838,abs_logistic_coefficient
+2,logistic_regression,股價淨值比,0.4054637975253263,0.4054637975253263,abs_logistic_coefficient
+2,logistic_regression,股價營收比,0.396109401610397,-0.396109401610397,abs_logistic_coefficient
+2,logistic_regression,收盤價(元)_年,0.3403272694960142,-0.3403272694960142,abs_logistic_coefficient
+2,logistic_regression,營業利益成長率,0.22566216493511582,-0.22566216493511582,abs_logistic_coefficient
+2,logistic_regression,營業利益率 OPM,0.21176938360785647,-0.21176938360785647,abs_logistic_coefficient
+2,logistic_regression,應收帳款週轉次,0.2060099157967814,0.2060099157967814,abs_logistic_coefficient
+2,logistic_regression,利潤邊際 NPM,0.18111201116703368,0.18111201116703368,abs_logistic_coefficient
+2,logistic_regression,存貨週轉率 (次),0.16223972315344815,-0.16223972315344815,abs_logistic_coefficient
+2,logistic_regression,稅後淨利成長率,0.12028094572294946,-0.12028094572294946,abs_logistic_coefficient
+2,logistic_regression,資產報酬率 ROA,0.10019326797429556,-0.10019326797429556,abs_logistic_coefficient
+2,logistic_regression,負債/淨值比,0.028313399149442614,0.028313399149442614,abs_logistic_coefficient
+2,logistic_regression,Unknown masked parameter,0.022498256615630367,0.022498256615630367,abs_logistic_coefficient
+3,logistic_regression,淨值報酬率─稅後,0.9022367884994598,0.9022367884994598,abs_logistic_coefficient
+3,logistic_regression,收盤價(元)_年,0.8878308551304601,-0.8878308551304601,abs_logistic_coefficient
+3,logistic_regression,速動比率,0.6804418854201884,0.6804418854201884,abs_logistic_coefficient
+3,logistic_regression,流動比率,0.610445791740852,-0.610445791740852,abs_logistic_coefficient
+3,logistic_regression,股價淨值比,0.591864462009641,0.591864462009641,abs_logistic_coefficient
+3,logistic_regression,應收帳款週轉次,0.36482575058320316,0.36482575058320316,abs_logistic_coefficient
+3,logistic_regression,營業利益成長率,0.30135402501908365,-0.30135402501908365,abs_logistic_coefficient
+3,logistic_regression,市值(百萬元),0.25507496391340906,0.25507496391340906,abs_logistic_coefficient
+3,logistic_regression,利潤邊際 NPM,0.19938580494193814,0.19938580494193814,abs_logistic_coefficient
+3,logistic_regression,存貨週轉率 (次),0.17379001854599846,-0.17379001854599846,abs_logistic_coefficient
+3,logistic_regression,營業利益率 OPM,0.17043197897736967,-0.17043197897736967,abs_logistic_coefficient
+3,logistic_regression,股價營收比,0.12315733913751409,-0.12315733913751409,abs_logistic_coefficient
+3,logistic_regression,資產報酬率 ROA,0.11162299710908692,-0.11162299710908692,abs_logistic_coefficient
+3,logistic_regression,Unknown masked parameter,0.04077892051776863,0.04077892051776863,abs_logistic_coefficient
+3,logistic_regression,負債/淨值比,0.029565628136708617,0.029565628136708617,abs_logistic_coefficient
+3,logistic_regression,稅後淨利成長率,0.008352761416281372,-0.008352761416281372,abs_logistic_coefficient
+4,logistic_regression,收盤價(元)_年,0.6824942343119597,-0.6824942343119597,abs_logistic_coefficient
+4,logistic_regression,速動比率,0.6086269562471213,0.6086269562471213,abs_logistic_coefficient
+4,logistic_regression,淨值報酬率─稅後,0.5901937231158727,0.5901937231158727,abs_logistic_coefficient
+4,logistic_regression,股價淨值比,0.4568632458124666,0.4568632458124666,abs_logistic_coefficient
+4,logistic_regression,流動比率,0.44217475114510546,-0.44217475114510546,abs_logistic_coefficient
+4,logistic_regression,營業利益率 OPM,0.24176262893273467,-0.24176262893273467,abs_logistic_coefficient
+4,logistic_regression,應收帳款週轉次,0.1824395892808578,0.1824395892808578,abs_logistic_coefficient
+4,logistic_regression,營業利益成長率,0.17769852062225444,-0.17769852062225444,abs_logistic_coefficient
+4,logistic_regression,存貨週轉率 (次),0.16192841690502652,-0.16192841690502652,abs_logistic_coefficient
+4,logistic_regression,資產報酬率 ROA,0.15405868463065037,0.15405868463065037,abs_logistic_coefficient
+4,logistic_regression,股價營收比,0.13053292290529783,-0.13053292290529783,abs_logistic_coefficient
+4,logistic_regression,市值(百萬元),0.12520283856131473,0.12520283856131473,abs_logistic_coefficient
+4,logistic_regression,利潤邊際 NPM,0.10631374212890424,0.10631374212890424,abs_logistic_coefficient
+4,logistic_regression,負債/淨值比,0.059588855611683485,0.059588855611683485,abs_logistic_coefficient
+4,logistic_regression,稅後淨利成長率,0.04746712698994452,-0.04746712698994452,abs_logistic_coefficient
+4,logistic_regression,Unknown masked parameter,0.01922993444269728,0.01922993444269728,abs_logistic_coefficient
+5,logistic_regression,收盤價(元)_年,0.8373625108939613,-0.8373625108939613,abs_logistic_coefficient
+5,logistic_regression,股價淨值比,0.476957326736862,0.476957326736862,abs_logistic_coefficient
+5,logistic_regression,淨值報酬率─稅後,0.3640415644282916,0.3640415644282916,abs_logistic_coefficient
+5,logistic_regression,速動比率,0.33358718352747074,0.33358718352747074,abs_logistic_coefficient
+5,logistic_regression,流動比率,0.2692926250457456,-0.2692926250457456,abs_logistic_coefficient
+5,logistic_regression,資產報酬率 ROA,0.21093179324165448,0.21093179324165448,abs_logistic_coefficient
+5,logistic_regression,利潤邊際 NPM,0.18696817196865992,0.18696817196865992,abs_logistic_coefficient
+5,logistic_regression,應收帳款週轉次,0.14815649576978113,0.14815649576978113,abs_logistic_coefficient
+5,logistic_regression,股價營收比,0.13872550304199555,-0.13872550304199555,abs_logistic_coefficient
+5,logistic_regression,營業利益率 OPM,0.1369155452447562,-0.1369155452447562,abs_logistic_coefficient
+5,logistic_regression,存貨週轉率 (次),0.09477609154618473,-0.09477609154618473,abs_logistic_coefficient
+5,logistic_regression,營業利益成長率,0.06903682102823094,-0.06903682102823094,abs_logistic_coefficient
+5,logistic_regression,負債/淨值比,0.05538170452463285,0.05538170452463285,abs_logistic_coefficient
+5,logistic_regression,市值(百萬元),0.0518115723939219,0.0518115723939219,abs_logistic_coefficient
+5,logistic_regression,稅後淨利成長率,0.03936813785535954,-0.03936813785535954,abs_logistic_coefficient
+5,logistic_regression,Unknown masked parameter,0.008180254094200376,0.008180254094200376,abs_logistic_coefficient
+6,logistic_regression,收盤價(元)_年,0.7274413747367646,-0.7274413747367646,abs_logistic_coefficient
+6,logistic_regression,資產報酬率 ROA,0.4565858099248396,0.4565858099248396,abs_logistic_coefficient
+6,logistic_regression,股價淨值比,0.3642044676811037,0.3642044676811037,abs_logistic_coefficient
+6,logistic_regression,淨值報酬率─稅後,0.31333562495090017,0.31333562495090017,abs_logistic_coefficient
+6,logistic_regression,速動比率,0.24469706269957828,0.24469706269957828,abs_logistic_coefficient
+6,logistic_regression,利潤邊際 NPM,0.23848153021809837,0.23848153021809837,abs_logistic_coefficient
+6,logistic_regression,流動比率,0.18655036970418942,-0.18655036970418942,abs_logistic_coefficient
+6,logistic_regression,營業利益率 OPM,0.11991116711734826,-0.11991116711734826,abs_logistic_coefficient
+6,logistic_regression,營業利益成長率,0.11894834633461947,-0.11894834633461947,abs_logistic_coefficient
+6,logistic_regression,負債/淨值比,0.10140574336849885,0.10140574336849885,abs_logistic_coefficient
+6,logistic_regression,市值(百萬元),0.09505712179817066,0.09505712179817066,abs_logistic_coefficient
+6,logistic_regression,股價營收比,0.08259602207563334,-0.08259602207563334,abs_logistic_coefficient
+6,logistic_regression,稅後淨利成長率,0.04713792816887919,-0.04713792816887919,abs_logistic_coefficient
+6,logistic_regression,應收帳款週轉次,0.041778332557464784,0.041778332557464784,abs_logistic_coefficient
+6,logistic_regression,存貨週轉率 (次),0.039551646271547294,-0.039551646271547294,abs_logistic_coefficient
+6,logistic_regression,Unknown masked parameter,0.008135439011798834,0.008135439011798834,abs_logistic_coefficient
+7,logistic_regression,收盤價(元)_年,0.7482242222929605,-0.7482242222929605,abs_logistic_coefficient
+7,logistic_regression,資產報酬率 ROA,0.6173037539465436,0.6173037539465436,abs_logistic_coefficient
+7,logistic_regression,股價淨值比,0.3304520900227982,0.3304520900227982,abs_logistic_coefficient
+7,logistic_regression,淨值報酬率─稅後,0.23390775306472053,0.23390775306472053,abs_logistic_coefficient
+7,logistic_regression,利潤邊際 NPM,0.20743350979230543,0.20743350979230543,abs_logistic_coefficient
+7,logistic_regression,負債/淨值比,0.1472087761125428,0.1472087761125428,abs_logistic_coefficient
+7,logistic_regression,營業利益成長率,0.1464761537156737,-0.1464761537156737,abs_logistic_coefficient
+7,logistic_regression,市值(百萬元),0.10913626656664013,0.10913626656664013,abs_logistic_coefficient
+7,logistic_regression,應收帳款週轉次,0.0630815249086677,0.0630815249086677,abs_logistic_coefficient
+7,logistic_regression,股價營收比,0.05806732809800889,-0.05806732809800889,abs_logistic_coefficient
+7,logistic_regression,營業利益率 OPM,0.053958705156073275,-0.053958705156073275,abs_logistic_coefficient
+7,logistic_regression,稅後淨利成長率,0.03993831317079713,-0.03993831317079713,abs_logistic_coefficient
+7,logistic_regression,流動比率,0.034258132510368626,0.034258132510368626,abs_logistic_coefficient
+7,logistic_regression,速動比率,0.023774631171686742,0.023774631171686742,abs_logistic_coefficient
+7,logistic_regression,Unknown masked parameter,0.023095024744615198,0.023095024744615198,abs_logistic_coefficient
+7,logistic_regression,存貨週轉率 (次),0.014069185339972659,-0.014069185339972659,abs_logistic_coefficient
+8,logistic_regression,資產報酬率 ROA,0.4462488580864128,0.4462488580864128,abs_logistic_coefficient
+8,logistic_regression,收盤價(元)_年,0.37804269494331527,-0.37804269494331527,abs_logistic_coefficient
+8,logistic_regression,淨值報酬率─稅後,0.19207654491198398,0.19207654491198398,abs_logistic_coefficient
+8,logistic_regression,營業利益成長率,0.16953351702493927,-0.16953351702493927,abs_logistic_coefficient
+8,logistic_regression,負債/淨值比,0.12611950994852736,0.12611950994852736,abs_logistic_coefficient
+8,logistic_regression,利潤邊際 NPM,0.10894162358330323,0.10894162358330323,abs_logistic_coefficient
+8,logistic_regression,股價淨值比,0.08742307220638643,0.08742307220638643,abs_logistic_coefficient
+8,logistic_regression,市值(百萬元),0.08669187296763808,0.08669187296763808,abs_logistic_coefficient
+8,logistic_regression,速動比率,0.08217947399981082,0.08217947399981082,abs_logistic_coefficient
+8,logistic_regression,營業利益率 OPM,0.06690437135625046,-0.06690437135625046,abs_logistic_coefficient
+8,logistic_regression,存貨週轉率 (次),0.0592231145067359,0.0592231145067359,abs_logistic_coefficient
+8,logistic_regression,股價營收比,0.05167934569386023,-0.05167934569386023,abs_logistic_coefficient
+8,logistic_regression,稅後淨利成長率,0.049160914001532045,-0.049160914001532045,abs_logistic_coefficient
+8,logistic_regression,流動比率,0.02571377991526076,-0.02571377991526076,abs_logistic_coefficient
+8,logistic_regression,應收帳款週轉次,0.024299191998875296,0.024299191998875296,abs_logistic_coefficient
+8,logistic_regression,Unknown masked parameter,0.019671471651633216,0.019671471651633216,abs_logistic_coefficient
+9,logistic_regression,資產報酬率 ROA,0.3312816704664291,0.3312816704664291,abs_logistic_coefficient
+9,logistic_regression,收盤價(元)_年,0.28146789186660864,-0.28146789186660864,abs_logistic_coefficient
+9,logistic_regression,淨值報酬率─稅後,0.19766070163891797,0.19766070163891797,abs_logistic_coefficient
+9,logistic_regression,利潤邊際 NPM,0.15924462929291625,0.15924462929291625,abs_logistic_coefficient
+9,logistic_regression,營業利益成長率,0.1435887886182111,-0.1435887886182111,abs_logistic_coefficient
+9,logistic_regression,負債/淨值比,0.09252257464024632,0.09252257464024632,abs_logistic_coefficient
+9,logistic_regression,營業利益率 OPM,0.05845810244168635,-0.05845810244168635,abs_logistic_coefficient
+9,logistic_regression,市值(百萬元),0.05352548569012157,0.05352548569012157,abs_logistic_coefficient
+9,logistic_regression,稅後淨利成長率,0.05136826780683215,-0.05136826780683215,abs_logistic_coefficient
+9,logistic_regression,Unknown masked parameter,0.03674718813047173,0.03674718813047173,abs_logistic_coefficient
+9,logistic_regression,股價淨值比,0.028617239544305055,-0.028617239544305055,abs_logistic_coefficient
+9,logistic_regression,應收帳款週轉次,0.02587518699053121,0.02587518699053121,abs_logistic_coefficient
+9,logistic_regression,存貨週轉率 (次),0.018342668537690197,-0.018342668537690197,abs_logistic_coefficient
+9,logistic_regression,速動比率,0.016660796038119763,0.016660796038119763,abs_logistic_coefficient
+9,logistic_regression,股價營收比,0.011334454333817193,-0.011334454333817193,abs_logistic_coefficient
+9,logistic_regression,流動比率,0.008803600118977949,0.008803600118977949,abs_logistic_coefficient
+10,logistic_regression,淨值報酬率─稅後,0.2687202509264875,0.2687202509264875,abs_logistic_coefficient
+10,logistic_regression,收盤價(元)_年,0.21849445292810946,-0.21849445292810946,abs_logistic_coefficient
+10,logistic_regression,利潤邊際 NPM,0.18822042516089427,0.18822042516089427,abs_logistic_coefficient
+10,logistic_regression,營業利益成長率,0.1406916337353344,-0.1406916337353344,abs_logistic_coefficient
+10,logistic_regression,負債/淨值比,0.10501638883921567,0.10501638883921567,abs_logistic_coefficient
+10,logistic_regression,資產報酬率 ROA,0.08921749716312823,0.08921749716312823,abs_logistic_coefficient
+10,logistic_regression,營業利益率 OPM,0.08626935620797799,-0.08626935620797799,abs_logistic_coefficient
+10,logistic_regression,股價淨值比,0.07133522879349127,-0.07133522879349127,abs_logistic_coefficient
+10,logistic_regression,市值(百萬元),0.06700612896346457,0.06700612896346457,abs_logistic_coefficient
+10,logistic_regression,稅後淨利成長率,0.061122953953288484,-0.061122953953288484,abs_logistic_coefficient
+10,logistic_regression,股價營收比,0.057099199749404576,-0.057099199749404576,abs_logistic_coefficient
+10,logistic_regression,存貨週轉率 (次),0.043855466945525896,-0.043855466945525896,abs_logistic_coefficient
+10,logistic_regression,速動比率,0.0396308844240402,0.0396308844240402,abs_logistic_coefficient
+10,logistic_regression,Unknown masked parameter,0.03852982358866077,0.03852982358866077,abs_logistic_coefficient
+10,logistic_regression,應收帳款週轉次,0.030236621060365048,0.030236621060365048,abs_logistic_coefficient
+10,logistic_regression,流動比率,0.011433191984331133,-0.011433191984331133,abs_logistic_coefficient
+11,logistic_regression,淨值報酬率─稅後,0.23032264573828654,0.23032264573828654,abs_logistic_coefficient
+11,logistic_regression,利潤邊際 NPM,0.20073478090472213,0.20073478090472213,abs_logistic_coefficient
+11,logistic_regression,營業利益成長率,0.16494042120117958,-0.16494042120117958,abs_logistic_coefficient
+11,logistic_regression,股價淨值比,0.15356651033321694,-0.15356651033321694,abs_logistic_coefficient
+11,logistic_regression,收盤價(元)_年,0.1532256022213693,-0.1532256022213693,abs_logistic_coefficient
+11,logistic_regression,負債/淨值比,0.11170460795752667,0.11170460795752667,abs_logistic_coefficient
+11,logistic_regression,市值(百萬元),0.08831395033384323,0.08831395033384323,abs_logistic_coefficient
+11,logistic_regression,資產報酬率 ROA,0.08441315043274823,0.08441315043274823,abs_logistic_coefficient
+11,logistic_regression,營業利益率 OPM,0.0816502364718547,-0.0816502364718547,abs_logistic_coefficient
+11,logistic_regression,速動比率,0.07099833633553937,0.07099833633553937,abs_logistic_coefficient
+11,logistic_regression,股價營收比,0.06456741021367114,-0.06456741021367114,abs_logistic_coefficient
+11,logistic_regression,應收帳款週轉次,0.052814526601407445,0.052814526601407445,abs_logistic_coefficient
+11,logistic_regression,稅後淨利成長率,0.03656963786929739,-0.03656963786929739,abs_logistic_coefficient
+11,logistic_regression,流動比率,0.03403690512705332,-0.03403690512705332,abs_logistic_coefficient
+11,logistic_regression,存貨週轉率 (次),0.030341004697878413,-0.030341004697878413,abs_logistic_coefficient
+11,logistic_regression,Unknown masked parameter,0.021636003142527574,0.021636003142527574,abs_logistic_coefficient
+1,random_forest,股價營收比,0.10164821633988,,tree_feature_importance
+1,random_forest,淨值報酬率─稅後,0.09645525245941064,,tree_feature_importance
+1,random_forest,市值(百萬元),0.0902158728634686,,tree_feature_importance
+1,random_forest,資產報酬率 ROA,0.08076254999326955,,tree_feature_importance
+1,random_forest,存貨週轉率 (次),0.06947179551645458,,tree_feature_importance
+1,random_forest,稅後淨利成長率,0.06068456864300226,,tree_feature_importance
+1,random_forest,股價淨值比,0.056525834314187735,,tree_feature_importance
+1,random_forest,Unknown masked parameter,0.05540839206178364,,tree_feature_importance
+1,random_forest,負債/淨值比,0.05491759747087363,,tree_feature_importance
+1,random_forest,營業利益成長率,0.054838909440107685,,tree_feature_importance
+1,random_forest,應收帳款週轉次,0.054388213654553395,,tree_feature_importance
+1,random_forest,速動比率,0.05215293445339589,,tree_feature_importance
+1,random_forest,利潤邊際 NPM,0.04621492965027625,,tree_feature_importance
+1,random_forest,營業利益率 OPM,0.04583397292058667,,tree_feature_importance
+1,random_forest,收盤價(元)_年,0.04392496403373432,,tree_feature_importance
+1,random_forest,流動比率,0.03655599618501516,,tree_feature_importance
+2,random_forest,市值(百萬元),0.10553769144852818,,tree_feature_importance
+2,random_forest,存貨週轉率 (次),0.09148636984691752,,tree_feature_importance
+2,random_forest,淨值報酬率─稅後,0.08984426823078216,,tree_feature_importance
+2,random_forest,股價營收比,0.07240953042524545,,tree_feature_importance
+2,random_forest,速動比率,0.07115218874100293,,tree_feature_importance
+2,random_forest,應收帳款週轉次,0.07049688081371332,,tree_feature_importance
+2,random_forest,資產報酬率 ROA,0.06432924245290056,,tree_feature_importance
+2,random_forest,營業利益成長率,0.058785709425036664,,tree_feature_importance
+2,random_forest,收盤價(元)_年,0.0518600906322476,,tree_feature_importance
+2,random_forest,營業利益率 OPM,0.05092926913548622,,tree_feature_importance
+2,random_forest,Unknown masked parameter,0.048964650760329846,,tree_feature_importance
+2,random_forest,稅後淨利成長率,0.04740115424440761,,tree_feature_importance
+2,random_forest,負債/淨值比,0.04714401613531562,,tree_feature_importance
+2,random_forest,股價淨值比,0.044356099519029905,,tree_feature_importance
+2,random_forest,利潤邊際 NPM,0.04284115751512584,,tree_feature_importance
+2,random_forest,流動比率,0.04246168067393056,,tree_feature_importance
+3,random_forest,股價營收比,0.0871431204905479,,tree_feature_importance
+3,random_forest,市值(百萬元),0.08375183861807596,,tree_feature_importance
+3,random_forest,淨值報酬率─稅後,0.07875686681687243,,tree_feature_importance
+3,random_forest,速動比率,0.07218603609188634,,tree_feature_importance
+3,random_forest,資產報酬率 ROA,0.06518068889971163,,tree_feature_importance
+3,random_forest,股價淨值比,0.06481558964045418,,tree_feature_importance
+3,random_forest,應收帳款週轉次,0.06385786613053417,,tree_feature_importance
+3,random_forest,收盤價(元)_年,0.06210699845762504,,tree_feature_importance
+3,random_forest,存貨週轉率 (次),0.05582967250681894,,tree_feature_importance
+3,random_forest,營業利益成長率,0.055727865847133524,,tree_feature_importance
+3,random_forest,稅後淨利成長率,0.05555574935062615,,tree_feature_importance
+3,random_forest,營業利益率 OPM,0.05523393477752163,,tree_feature_importance
+3,random_forest,利潤邊際 NPM,0.05424672350324663,,tree_feature_importance
+3,random_forest,Unknown masked parameter,0.05296196227552023,,tree_feature_importance
+3,random_forest,負債/淨值比,0.050114535482951646,,tree_feature_importance
+3,random_forest,流動比率,0.04253055111047375,,tree_feature_importance
+4,random_forest,股價營收比,0.0831861148192997,,tree_feature_importance
+4,random_forest,速動比率,0.07705131606756291,,tree_feature_importance
+4,random_forest,淨值報酬率─稅後,0.07527721267448288,,tree_feature_importance
+4,random_forest,資產報酬率 ROA,0.07032272990912791,,tree_feature_importance
+4,random_forest,收盤價(元)_年,0.06549489500983685,,tree_feature_importance
+4,random_forest,市值(百萬元),0.06478164318102175,,tree_feature_importance
+4,random_forest,營業利益成長率,0.06282674174967239,,tree_feature_importance
+4,random_forest,股價淨值比,0.06090482993370748,,tree_feature_importance
+4,random_forest,應收帳款週轉次,0.059557292860778294,,tree_feature_importance
+4,random_forest,存貨週轉率 (次),0.05859358129143338,,tree_feature_importance
+4,random_forest,稅後淨利成長率,0.057244389848828466,,tree_feature_importance
+4,random_forest,利潤邊際 NPM,0.05499164298868427,,tree_feature_importance
+4,random_forest,營業利益率 OPM,0.05437860308348249,,tree_feature_importance
+4,random_forest,Unknown masked parameter,0.0538964345897724,,tree_feature_importance
+4,random_forest,負債/淨值比,0.05179772936567542,,tree_feature_importance
+4,random_forest,流動比率,0.04969484262663352,,tree_feature_importance
+5,random_forest,股價營收比,0.09607003405261039,,tree_feature_importance
+5,random_forest,股價淨值比,0.08098466848895192,,tree_feature_importance
+5,random_forest,收盤價(元)_年,0.07231075434958043,,tree_feature_importance
+5,random_forest,速動比率,0.0674353334677204,,tree_feature_importance
+5,random_forest,淨值報酬率─稅後,0.063840905005701,,tree_feature_importance
+5,random_forest,應收帳款週轉次,0.06189240537610738,,tree_feature_importance
+5,random_forest,營業利益成長率,0.059866875003022874,,tree_feature_importance
+5,random_forest,Unknown masked parameter,0.058713713939049283,,tree_feature_importance
+5,random_forest,資產報酬率 ROA,0.05743338389258272,,tree_feature_importance
+5,random_forest,市值(百萬元),0.05728569178393464,,tree_feature_importance
+5,random_forest,存貨週轉率 (次),0.056992091651205244,,tree_feature_importance
+5,random_forest,利潤邊際 NPM,0.05607134092429305,,tree_feature_importance
+5,random_forest,負債/淨值比,0.0542811385587989,,tree_feature_importance
+5,random_forest,營業利益率 OPM,0.0529599701029831,,tree_feature_importance
+5,random_forest,稅後淨利成長率,0.05283609769506411,,tree_feature_importance
+5,random_forest,流動比率,0.05102559570839457,,tree_feature_importance
+6,random_forest,股價淨值比,0.08480744005371026,,tree_feature_importance
+6,random_forest,股價營收比,0.08114825536160887,,tree_feature_importance
+6,random_forest,收盤價(元)_年,0.07519971689050517,,tree_feature_importance
+6,random_forest,市值(百萬元),0.06349853933528732,,tree_feature_importance
+6,random_forest,速動比率,0.06243336481750132,,tree_feature_importance
+6,random_forest,營業利益成長率,0.06210346743252746,,tree_feature_importance
+6,random_forest,應收帳款週轉次,0.06149689132910896,,tree_feature_importance
+6,random_forest,淨值報酬率─稅後,0.05977917405393207,,tree_feature_importance
+6,random_forest,負債/淨值比,0.05866751593478292,,tree_feature_importance
+6,random_forest,存貨週轉率 (次),0.05834596013734658,,tree_feature_importance
+6,random_forest,資產報酬率 ROA,0.058178186820305296,,tree_feature_importance
+6,random_forest,Unknown masked parameter,0.05756200823956594,,tree_feature_importance
+6,random_forest,利潤邊際 NPM,0.055061989351617206,,tree_feature_importance
+6,random_forest,稅後淨利成長率,0.054572820156546735,,tree_feature_importance
+6,random_forest,流動比率,0.05389194751900152,,tree_feature_importance
+6,random_forest,營業利益率 OPM,0.05325272256665238,,tree_feature_importance
+7,random_forest,股價淨值比,0.08935135361944305,,tree_feature_importance
+7,random_forest,股價營收比,0.08069410381605853,,tree_feature_importance
+7,random_forest,收盤價(元)_年,0.07365669783486734,,tree_feature_importance
+7,random_forest,市值(百萬元),0.06838189611827522,,tree_feature_importance
+7,random_forest,應收帳款週轉次,0.06777952414244329,,tree_feature_importance
+7,random_forest,營業利益成長率,0.06119660103135105,,tree_feature_importance
+7,random_forest,資產報酬率 ROA,0.05814734197938336,,tree_feature_importance
+7,random_forest,負債/淨值比,0.05789881688656754,,tree_feature_importance
+7,random_forest,存貨週轉率 (次),0.05781364226965678,,tree_feature_importance
+7,random_forest,淨值報酬率─稅後,0.05771078686700688,,tree_feature_importance
+7,random_forest,利潤邊際 NPM,0.05671729172983029,,tree_feature_importance
+7,random_forest,稅後淨利成長率,0.055536876239739554,,tree_feature_importance
+7,random_forest,營業利益率 OPM,0.0546496313438158,,tree_feature_importance
+7,random_forest,Unknown masked parameter,0.05438847501155327,,tree_feature_importance
+7,random_forest,流動比率,0.05306764415982561,,tree_feature_importance
+7,random_forest,速動比率,0.053009316950182364,,tree_feature_importance
+8,random_forest,股價淨值比,0.08482389503902628,,tree_feature_importance
+8,random_forest,股價營收比,0.07739528934713226,,tree_feature_importance
+8,random_forest,市值(百萬元),0.06827791488966925,,tree_feature_importance
+8,random_forest,收盤價(元)_年,0.06600349287151662,,tree_feature_importance
+8,random_forest,應收帳款週轉次,0.0626651115327325,,tree_feature_importance
+8,random_forest,存貨週轉率 (次),0.06192175276522446,,tree_feature_importance
+8,random_forest,營業利益成長率,0.06120920057421282,,tree_feature_importance
+8,random_forest,淨值報酬率─稅後,0.05990692664212743,,tree_feature_importance
+8,random_forest,稅後淨利成長率,0.059816897085723506,,tree_feature_importance
+8,random_forest,速動比率,0.05949592593488507,,tree_feature_importance
+8,random_forest,資產報酬率 ROA,0.058504485017115075,,tree_feature_importance
+8,random_forest,Unknown masked parameter,0.057580042885483976,,tree_feature_importance
+8,random_forest,流動比率,0.05625765560482756,,tree_feature_importance
+8,random_forest,負債/淨值比,0.055422328299202475,,tree_feature_importance
+8,random_forest,營業利益率 OPM,0.05539447424412435,,tree_feature_importance
+8,random_forest,利潤邊際 NPM,0.055324607266996444,,tree_feature_importance
+9,random_forest,股價淨值比,0.0909735192679908,,tree_feature_importance
+9,random_forest,股價營收比,0.07421065857557768,,tree_feature_importance
+9,random_forest,收盤價(元)_年,0.07077025298684593,,tree_feature_importance
+9,random_forest,市值(百萬元),0.06448642202207218,,tree_feature_importance
+9,random_forest,存貨週轉率 (次),0.06420125044231517,,tree_feature_importance
+9,random_forest,淨值報酬率─稅後,0.06164868660107657,,tree_feature_importance
+9,random_forest,營業利益成長率,0.06115894394398815,,tree_feature_importance
+9,random_forest,應收帳款週轉次,0.06064786657385476,,tree_feature_importance
+9,random_forest,稅後淨利成長率,0.06060059317557064,,tree_feature_importance
+9,random_forest,Unknown masked parameter,0.05879652410922397,,tree_feature_importance
+9,random_forest,資產報酬率 ROA,0.058690718726852734,,tree_feature_importance
+9,random_forest,負債/淨值比,0.05618230987733186,,tree_feature_importance
+9,random_forest,營業利益率 OPM,0.055262597998969945,,tree_feature_importance
+9,random_forest,利潤邊際 NPM,0.0551901925090642,,tree_feature_importance
+9,random_forest,速動比率,0.05459561484737386,,tree_feature_importance
+9,random_forest,流動比率,0.05258384834189162,,tree_feature_importance
+10,random_forest,股價淨值比,0.08796232117808515,,tree_feature_importance
+10,random_forest,股價營收比,0.07121815485714882,,tree_feature_importance
+10,random_forest,市值(百萬元),0.0688663116125402,,tree_feature_importance
+10,random_forest,收盤價(元)_年,0.0685276467997285,,tree_feature_importance
+10,random_forest,稅後淨利成長率,0.06250832918867853,,tree_feature_importance
+10,random_forest,存貨週轉率 (次),0.06226355365252663,,tree_feature_importance
+10,random_forest,營業利益成長率,0.06101428558725708,,tree_feature_importance
+10,random_forest,淨值報酬率─稅後,0.06052225557433888,,tree_feature_importance
+10,random_forest,應收帳款週轉次,0.06036699830933353,,tree_feature_importance
+10,random_forest,Unknown masked parameter,0.059032335514028325,,tree_feature_importance
+10,random_forest,資產報酬率 ROA,0.058552435762303914,,tree_feature_importance
+10,random_forest,負債/淨值比,0.057562565932999875,,tree_feature_importance
+10,random_forest,利潤邊際 NPM,0.05653610899214499,,tree_feature_importance
+10,random_forest,速動比率,0.05627852857523115,,tree_feature_importance
+10,random_forest,營業利益率 OPM,0.05559460422131211,,tree_feature_importance
+10,random_forest,流動比率,0.05319356424234232,,tree_feature_importance
+11,random_forest,股價淨值比,0.08596508399239655,,tree_feature_importance
+11,random_forest,股價營收比,0.07046843823763232,,tree_feature_importance
+11,random_forest,收盤價(元)_年,0.07043553145572663,,tree_feature_importance
+11,random_forest,市值(百萬元),0.06923691334858074,,tree_feature_importance
+11,random_forest,應收帳款週轉次,0.06533338330114415,,tree_feature_importance
+11,random_forest,營業利益成長率,0.06184691231179423,,tree_feature_importance
+11,random_forest,稅後淨利成長率,0.061319166130318965,,tree_feature_importance
+11,random_forest,存貨週轉率 (次),0.06080852040412462,,tree_feature_importance
+11,random_forest,Unknown masked parameter,0.0598114718390893,,tree_feature_importance
+11,random_forest,資產報酬率 ROA,0.05873589323794614,,tree_feature_importance
+11,random_forest,淨值報酬率─稅後,0.058521200656083266,,tree_feature_importance
+11,random_forest,利潤邊際 NPM,0.05692249936693655,,tree_feature_importance
+11,random_forest,營業利益率 OPM,0.05687152084872742,,tree_feature_importance
+11,random_forest,負債/淨值比,0.05558233012802825,,tree_feature_importance
+11,random_forest,速動比率,0.055212354206130534,,tree_feature_importance
+11,random_forest,流動比率,0.052928780535340336,,tree_feature_importance
+1,gradient_boosting,市值(百萬元),0.1547207389519688,,tree_feature_importance
+1,gradient_boosting,股價營收比,0.12630699658656364,,tree_feature_importance
+1,gradient_boosting,淨值報酬率─稅後,0.12342716316244746,,tree_feature_importance
+1,gradient_boosting,Unknown masked parameter,0.11321911217994966,,tree_feature_importance
+1,gradient_boosting,負債/淨值比,0.09658271427424422,,tree_feature_importance
+1,gradient_boosting,稅後淨利成長率,0.07078217345009907,,tree_feature_importance
+1,gradient_boosting,應收帳款週轉次,0.0574143079822866,,tree_feature_importance
+1,gradient_boosting,存貨週轉率 (次),0.04370914900181706,,tree_feature_importance
+1,gradient_boosting,資產報酬率 ROA,0.04208438416597486,,tree_feature_importance
+1,gradient_boosting,速動比率,0.0334489189862131,,tree_feature_importance
+1,gradient_boosting,收盤價(元)_年,0.033066221841837586,,tree_feature_importance
+1,gradient_boosting,股價淨值比,0.03249876187299729,,tree_feature_importance
+1,gradient_boosting,營業利益成長率,0.02513606180940705,,tree_feature_importance
+1,gradient_boosting,利潤邊際 NPM,0.018814072820869093,,tree_feature_importance
+1,gradient_boosting,營業利益率 OPM,0.01665483055787758,,tree_feature_importance
+1,gradient_boosting,流動比率,0.012134392355446983,,tree_feature_importance
+2,gradient_boosting,淨值報酬率─稅後,0.14678119345694904,,tree_feature_importance
+2,gradient_boosting,市值(百萬元),0.14382203108985567,,tree_feature_importance
+2,gradient_boosting,存貨週轉率 (次),0.08240805201504611,,tree_feature_importance
+2,gradient_boosting,股價營收比,0.07607643727352423,,tree_feature_importance
+2,gradient_boosting,應收帳款週轉次,0.07219484288255762,,tree_feature_importance
+2,gradient_boosting,Unknown masked parameter,0.06901082480076084,,tree_feature_importance
+2,gradient_boosting,營業利益成長率,0.05676965258694337,,tree_feature_importance
+2,gradient_boosting,速動比率,0.055505377090525075,,tree_feature_importance
+2,gradient_boosting,營業利益率 OPM,0.05214723479326521,,tree_feature_importance
+2,gradient_boosting,資產報酬率 ROA,0.04941533491111396,,tree_feature_importance
+2,gradient_boosting,稅後淨利成長率,0.04601333200376255,,tree_feature_importance
+2,gradient_boosting,收盤價(元)_年,0.044095039319328067,,tree_feature_importance
+2,gradient_boosting,負債/淨值比,0.03727224902477629,,tree_feature_importance
+2,gradient_boosting,流動比率,0.032861534664234235,,tree_feature_importance
+2,gradient_boosting,股價淨值比,0.020776942151064546,,tree_feature_importance
+2,gradient_boosting,利潤邊際 NPM,0.014849921936293212,,tree_feature_importance
+3,gradient_boosting,淨值報酬率─稅後,0.13524910558736616,,tree_feature_importance
+3,gradient_boosting,股價營收比,0.12257038198731125,,tree_feature_importance
+3,gradient_boosting,市值(百萬元),0.1103285165498668,,tree_feature_importance
+3,gradient_boosting,速動比率,0.08378448347938224,,tree_feature_importance
+3,gradient_boosting,稅後淨利成長率,0.08123701691755549,,tree_feature_importance
+3,gradient_boosting,應收帳款週轉次,0.076769013188402,,tree_feature_importance
+3,gradient_boosting,營業利益率 OPM,0.07358467993805705,,tree_feature_importance
+3,gradient_boosting,收盤價(元)_年,0.05506515974735325,,tree_feature_importance
+3,gradient_boosting,營業利益成長率,0.04624603386897172,,tree_feature_importance
+3,gradient_boosting,股價淨值比,0.04579791300636232,,tree_feature_importance
+3,gradient_boosting,Unknown masked parameter,0.044451600274997054,,tree_feature_importance
+3,gradient_boosting,利潤邊際 NPM,0.04045650111362423,,tree_feature_importance
+3,gradient_boosting,負債/淨值比,0.038333598766748245,,tree_feature_importance
+3,gradient_boosting,資產報酬率 ROA,0.02243045546767686,,tree_feature_importance
+3,gradient_boosting,流動比率,0.012538634134582647,,tree_feature_importance
+3,gradient_boosting,存貨週轉率 (次),0.0111569059717426,,tree_feature_importance
+4,gradient_boosting,股價營收比,0.14797991936526517,,tree_feature_importance
+4,gradient_boosting,淨值報酬率─稅後,0.11546317508251513,,tree_feature_importance
+4,gradient_boosting,速動比率,0.10989795224664607,,tree_feature_importance
+4,gradient_boosting,市值(百萬元),0.07196663884838757,,tree_feature_importance
+4,gradient_boosting,收盤價(元)_年,0.06888656740603873,,tree_feature_importance
+4,gradient_boosting,應收帳款週轉次,0.06751532393979655,,tree_feature_importance
+4,gradient_boosting,稅後淨利成長率,0.06487920902392695,,tree_feature_importance
+4,gradient_boosting,營業利益成長率,0.0627097911460202,,tree_feature_importance
+4,gradient_boosting,Unknown masked parameter,0.05894174848297228,,tree_feature_importance
+4,gradient_boosting,營業利益率 OPM,0.05367805380858285,,tree_feature_importance
+4,gradient_boosting,利潤邊際 NPM,0.05125790137236018,,tree_feature_importance
+4,gradient_boosting,資產報酬率 ROA,0.030345549100964223,,tree_feature_importance
+4,gradient_boosting,股價淨值比,0.030106493210172416,,tree_feature_importance
+4,gradient_boosting,負債/淨值比,0.027791506978405385,,tree_feature_importance
+4,gradient_boosting,存貨週轉率 (次),0.027609142035291873,,tree_feature_importance
+4,gradient_boosting,流動比率,0.010971027952654448,,tree_feature_importance
+5,gradient_boosting,股價營收比,0.16171677874635848,,tree_feature_importance
+5,gradient_boosting,速動比率,0.09378887867023866,,tree_feature_importance
+5,gradient_boosting,淨值報酬率─稅後,0.08982214490386567,,tree_feature_importance
+5,gradient_boosting,應收帳款週轉次,0.08905897668636327,,tree_feature_importance
+5,gradient_boosting,股價淨值比,0.07558561521174514,,tree_feature_importance
+5,gradient_boosting,市值(百萬元),0.07395520824480617,,tree_feature_importance
+5,gradient_boosting,收盤價(元)_年,0.06518229373427763,,tree_feature_importance
+5,gradient_boosting,營業利益成長率,0.053798008214823584,,tree_feature_importance
+5,gradient_boosting,Unknown masked parameter,0.051314639759224207,,tree_feature_importance
+5,gradient_boosting,利潤邊際 NPM,0.05012789636098999,,tree_feature_importance
+5,gradient_boosting,稅後淨利成長率,0.04445087905907855,,tree_feature_importance
+5,gradient_boosting,負債/淨值比,0.04131320244835442,,tree_feature_importance
+5,gradient_boosting,資產報酬率 ROA,0.04101421788183308,,tree_feature_importance
+5,gradient_boosting,存貨週轉率 (次),0.034539467117460504,,tree_feature_importance
+5,gradient_boosting,營業利益率 OPM,0.02249164302548109,,tree_feature_importance
+5,gradient_boosting,流動比率,0.011840149935099591,,tree_feature_importance
+6,gradient_boosting,股價淨值比,0.11550730658918791,,tree_feature_importance
+6,gradient_boosting,股價營收比,0.10151925675286642,,tree_feature_importance
+6,gradient_boosting,市值(百萬元),0.09510607900435483,,tree_feature_importance
+6,gradient_boosting,速動比率,0.07519352770133772,,tree_feature_importance
+6,gradient_boosting,淨值報酬率─稅後,0.0719497734553523,,tree_feature_importance
+6,gradient_boosting,收盤價(元)_年,0.06775472790521708,,tree_feature_importance
+6,gradient_boosting,資產報酬率 ROA,0.06757130250360076,,tree_feature_importance
+6,gradient_boosting,應收帳款週轉次,0.0632319238552557,,tree_feature_importance
+6,gradient_boosting,稅後淨利成長率,0.06163660321445791,,tree_feature_importance
+6,gradient_boosting,Unknown masked parameter,0.05179983833115249,,tree_feature_importance
+6,gradient_boosting,營業利益成長率,0.0500577759315027,,tree_feature_importance
+6,gradient_boosting,利潤邊際 NPM,0.04579086875652443,,tree_feature_importance
+6,gradient_boosting,負債/淨值比,0.045137191203760335,,tree_feature_importance
+6,gradient_boosting,存貨週轉率 (次),0.03963462105576778,,tree_feature_importance
+6,gradient_boosting,營業利益率 OPM,0.02831166192040689,,tree_feature_importance
+6,gradient_boosting,流動比率,0.01979754181925472,,tree_feature_importance
+7,gradient_boosting,股價淨值比,0.14596296051540747,,tree_feature_importance
+7,gradient_boosting,市值(百萬元),0.11644582567630996,,tree_feature_importance
+7,gradient_boosting,應收帳款週轉次,0.08349444223124122,,tree_feature_importance
+7,gradient_boosting,股價營收比,0.08339946452173867,,tree_feature_importance
+7,gradient_boosting,淨值報酬率─稅後,0.06753425343060054,,tree_feature_importance
+7,gradient_boosting,速動比率,0.06543379873090997,,tree_feature_importance
+7,gradient_boosting,資產報酬率 ROA,0.06382341801062197,,tree_feature_importance
+7,gradient_boosting,收盤價(元)_年,0.061992593862593745,,tree_feature_importance
+7,gradient_boosting,稅後淨利成長率,0.06112686989018374,,tree_feature_importance
+7,gradient_boosting,營業利益成長率,0.04741230217380604,,tree_feature_importance
+7,gradient_boosting,Unknown masked parameter,0.040861207537000906,,tree_feature_importance
+7,gradient_boosting,存貨週轉率 (次),0.038645235586706406,,tree_feature_importance
+7,gradient_boosting,利潤邊際 NPM,0.03628456311597832,,tree_feature_importance
+7,gradient_boosting,負債/淨值比,0.03285842753079484,,tree_feature_importance
+7,gradient_boosting,流動比率,0.02736952444673383,,tree_feature_importance
+7,gradient_boosting,營業利益率 OPM,0.027355112739372474,,tree_feature_importance
+8,gradient_boosting,股價淨值比,0.13245578490160173,,tree_feature_importance
+8,gradient_boosting,市值(百萬元),0.10910624682036109,,tree_feature_importance
+8,gradient_boosting,股價營收比,0.09871892653805893,,tree_feature_importance
+8,gradient_boosting,淨值報酬率─稅後,0.0819115621647882,,tree_feature_importance
+8,gradient_boosting,營業利益成長率,0.07664924620431952,,tree_feature_importance
+8,gradient_boosting,應收帳款週轉次,0.06649416310744125,,tree_feature_importance
+8,gradient_boosting,速動比率,0.06357997551500243,,tree_feature_importance
+8,gradient_boosting,存貨週轉率 (次),0.055748411459334256,,tree_feature_importance
+8,gradient_boosting,稅後淨利成長率,0.05269767040515359,,tree_feature_importance
+8,gradient_boosting,負債/淨值比,0.05071727564751266,,tree_feature_importance
+8,gradient_boosting,營業利益率 OPM,0.045172955639551815,,tree_feature_importance
+8,gradient_boosting,資產報酬率 ROA,0.04067143687643785,,tree_feature_importance
+8,gradient_boosting,收盤價(元)_年,0.037841561950033194,,tree_feature_importance
+8,gradient_boosting,利潤邊際 NPM,0.037499318755732744,,tree_feature_importance
+8,gradient_boosting,流動比率,0.028012897283559622,,tree_feature_importance
+8,gradient_boosting,Unknown masked parameter,0.022722566731111078,,tree_feature_importance
+9,gradient_boosting,股價淨值比,0.1725997781125193,,tree_feature_importance
+9,gradient_boosting,淨值報酬率─稅後,0.10428830060752646,,tree_feature_importance
+9,gradient_boosting,股價營收比,0.09542097793128017,,tree_feature_importance
+9,gradient_boosting,市值(百萬元),0.08599159521205664,,tree_feature_importance
+9,gradient_boosting,存貨週轉率 (次),0.06391240913334911,,tree_feature_importance
+9,gradient_boosting,營業利益成長率,0.06357868416772755,,tree_feature_importance
+9,gradient_boosting,速動比率,0.0543541562453124,,tree_feature_importance
+9,gradient_boosting,應收帳款週轉次,0.050285350823842265,,tree_feature_importance
+9,gradient_boosting,稅後淨利成長率,0.048654867123309596,,tree_feature_importance
+9,gradient_boosting,資產報酬率 ROA,0.04625221552982602,,tree_feature_importance
+9,gradient_boosting,營業利益率 OPM,0.043876848867838575,,tree_feature_importance
+9,gradient_boosting,利潤邊際 NPM,0.042910827229788,,tree_feature_importance
+9,gradient_boosting,Unknown masked parameter,0.036828692332539936,,tree_feature_importance
+9,gradient_boosting,負債/淨值比,0.03396639019810732,,tree_feature_importance
+9,gradient_boosting,收盤價(元)_年,0.02973311242835651,,tree_feature_importance
+9,gradient_boosting,流動比率,0.02734579405662013,,tree_feature_importance
+10,gradient_boosting,股價淨值比,0.1718301868192718,,tree_feature_importance
+10,gradient_boosting,市值(百萬元),0.10085312957659076,,tree_feature_importance
+10,gradient_boosting,股價營收比,0.09140477106585125,,tree_feature_importance
+10,gradient_boosting,淨值報酬率─稅後,0.0702306627832701,,tree_feature_importance
+10,gradient_boosting,營業利益成長率,0.06567065973277904,,tree_feature_importance
+10,gradient_boosting,存貨週轉率 (次),0.05773231113859371,,tree_feature_importance
+10,gradient_boosting,負債/淨值比,0.056174345847288976,,tree_feature_importance
+10,gradient_boosting,資產報酬率 ROA,0.05210675505389615,,tree_feature_importance
+10,gradient_boosting,速動比率,0.04893284391522285,,tree_feature_importance
+10,gradient_boosting,稅後淨利成長率,0.048456066492670834,,tree_feature_importance
+10,gradient_boosting,應收帳款週轉次,0.04440468147877913,,tree_feature_importance
+10,gradient_boosting,Unknown masked parameter,0.044376763040439034,,tree_feature_importance
+10,gradient_boosting,流動比率,0.043132809539249334,,tree_feature_importance
+10,gradient_boosting,營業利益率 OPM,0.04162419522684286,,tree_feature_importance
+10,gradient_boosting,利潤邊際 NPM,0.04115149821745309,,tree_feature_importance
+10,gradient_boosting,收盤價(元)_年,0.02191832007180104,,tree_feature_importance
+11,gradient_boosting,股價淨值比,0.15218574139784924,,tree_feature_importance
+11,gradient_boosting,市值(百萬元),0.10755324884826581,,tree_feature_importance
+11,gradient_boosting,營業利益成長率,0.07545641342182755,,tree_feature_importance
+11,gradient_boosting,股價營收比,0.07478790885524504,,tree_feature_importance
+11,gradient_boosting,應收帳款週轉次,0.06936005460786708,,tree_feature_importance
+11,gradient_boosting,資產報酬率 ROA,0.06202768755639751,,tree_feature_importance
+11,gradient_boosting,淨值報酬率─稅後,0.055942270692567464,,tree_feature_importance
+11,gradient_boosting,速動比率,0.05531949790789937,,tree_feature_importance
+11,gradient_boosting,稅後淨利成長率,0.052470948602178206,,tree_feature_importance
+11,gradient_boosting,存貨週轉率 (次),0.051038138539431566,,tree_feature_importance
+11,gradient_boosting,Unknown masked parameter,0.049524030685982004,,tree_feature_importance
+11,gradient_boosting,利潤邊際 NPM,0.04792108384084874,,tree_feature_importance
+11,gradient_boosting,流動比率,0.03952670430014617,,tree_feature_importance
+11,gradient_boosting,營業利益率 OPM,0.03913702262982325,,tree_feature_importance
+11,gradient_boosting,負債/淨值比,0.036934679573175574,,tree_feature_importance
+11,gradient_boosting,收盤價(元)_年,0.030814568540495343,,tree_feature_importance

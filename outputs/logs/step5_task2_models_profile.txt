@@ -1,0 +1,75 @@
+========== Step 5 Task 2 Classification Models Profile ==========
+
+Models:
+- logistic_regression
+- random_forest
+- gradient_boosting
+
+Validation:
+- Mode: next_year expanding-window temporal validation
+- Testing years: 1998-2008
+- Each split uses only earlier years as training data
+
+Prediction summary:
+- Total prediction rows: 6600
+- Number of models: 3
+- Number of splits per model: 11
+
+Rows by model:
+- gradient_boosting: 2200 rows
+- logistic_regression: 2200 rows
+- random_forest: 2200 rows
+
+Overall classification metrics:
+         model_name  n_samples  accuracy  precision_label_1  recall_label_1  f1_label_1
+  gradient_boosting       2200  0.547727           0.451694        0.392157    0.419825
+logistic_regression       2200  0.538182           0.459370        0.603486    0.521657
+      random_forest       2200  0.550455           0.466223        0.533769    0.497715
+
+Average feature importance / coefficient by model:
+
+[gradient_boosting]
+       model_name                  feature  importance
+gradient_boosting                    股價營收比    0.107264
+gradient_boosting                  市值(百萬元)    0.106350
+gradient_boosting                    股價淨值比    0.099573
+gradient_boosting                 淨值報酬率─稅後    0.096600
+gradient_boosting                  應收帳款週轉次    0.067293
+gradient_boosting                     速動比率    0.067204
+gradient_boosting                  稅後淨利成長率    0.057491
+gradient_boosting                  營業利益成長率    0.056680
+gradient_boosting Unknown masked parameter    0.053005
+gradient_boosting                資產報酬率 ROA    0.047068
+
+[logistic_regression]
+         model_name   feature  importance
+logistic_regression  收盤價(元)_年    0.540370
+logistic_regression  淨值報酬率─稅後    0.377591
+logistic_regression      速動比率    0.339978
+logistic_regression     股價淨值比    0.335432
+logistic_regression 資產報酬率 ROA    0.294194
+logistic_regression      流動比率    0.247424
+logistic_regression   市值(百萬元)    0.230654
+logistic_regression  利潤邊際 NPM    0.205904
+logistic_regression   營業利益成長率    0.162627
+logistic_regression   應收帳款週轉次    0.154402
+
+[random_forest]
+   model_name   feature  importance
+random_forest     股價營收比    0.081417
+random_forest     股價淨值比    0.075588
+random_forest   市值(百萬元)    0.073120
+random_forest  淨值報酬率─稅後    0.069297
+random_forest  收盤價(元)_年    0.065481
+random_forest 存貨週轉率 (次)    0.063430
+random_forest 資產報酬率 ROA    0.062622
+random_forest   應收帳款週轉次    0.062589
+random_forest      速動比率    0.061909
+random_forest   營業利益成長率    0.060052
+
+Generated files:
+- Predictions: C:\Users\user\Documents\project\FineTech\outputs\predictions\task2_classification_predictions.csv
+- Classification metrics: C:\Users\user\Documents\project\FineTech\outputs\metrics\task2_classification_metrics.csv
+- Feature importance: C:\Users\user\Documents\project\FineTech\outputs\metrics\task2_feature_importance.csv
+
+========== End of Step 5 Profile ==========

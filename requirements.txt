@@ -1,0 +1,17 @@
+# Core data processing and modeling
+pandas
+numpy
+scikit-learn
+joblib
+
+# Excel input support
+openpyxl
+xlrd
+
+# Visualization
+matplotlib
+pillow
+
+# External data pipeline
+requests
+yfinance

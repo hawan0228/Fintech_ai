@@ -1,0 +1,73 @@
+========== Step 3 Decision Tree Profile ==========
+
+Model:
+- Model name: decision_tree_entropy
+- Classifier: sklearn DecisionTreeClassifier
+- Criterion: entropy
+- Purpose: Task 1 ID3-like stock-selection classification model
+
+Prediction output summary:
+- Total prediction rows: 2200
+- Number of splits: 11
+- Test year range: 1998 - 2008
+
+Rows by testing year:
+- 1998: 200 rows
+- 1999: 200 rows
+- 2000: 200 rows
+- 2001: 200 rows
+- 2002: 200 rows
+- 2003: 200 rows
+- 2004: 200 rows
+- 2005: 200 rows
+- 2006: 200 rows
+- 2007: 200 rows
+- 2008: 200 rows
+
+Overall classification metrics:
+- Accuracy: 0.551364
+- Precision label=1: 0.455020
+- Recall label=1: 0.380174
+- F1 label=1: 0.414243
+
+Classification metrics by split:
+split_id test_years  n_samples  accuracy  precision_label_1  recall_label_1  f1_label_1
+       1       1998        200     0.640           0.511905        0.581081    0.544304
+       2       1999        200     0.515           0.420000        0.235955    0.302158
+       3       2000        200     0.540           0.395604        0.493151    0.439024
+       4       2001        200     0.505           0.333333        0.207317    0.255639
+       5       2002        200     0.475           0.398058        0.488095    0.438503
+       6       2003        200     0.580           0.687500        0.323529    0.440000
+       7       2004        200     0.565           0.355932        0.300000    0.325581
+       8       2005        200     0.625           0.561905        0.670455    0.611399
+       9       2006        200     0.555           0.444444        0.188235    0.264463
+      10       2007        200     0.485           0.411765        0.397727    0.404624
+      11       2008        200     0.580           0.490909        0.325301    0.391304
+
+Average feature importance across splits:
+                 feature  importance
+                淨值報酬率─稅後    0.173179
+                   股價淨值比    0.146919
+                   股價營收比    0.111754
+                 市值(百萬元)    0.095789
+               資產報酬率 ROA    0.065816
+                    速動比率    0.052868
+                 稅後淨利成長率    0.051664
+                收盤價(元)_年    0.049591
+               營業利益率 OPM    0.043632
+               存貨週轉率 (次)    0.042529
+                 應收帳款週轉次    0.040693
+                利潤邊際 NPM    0.032146
+Unknown masked parameter    0.027307
+                  負債/淨值比    0.024577
+                 營業利益成長率    0.021652
+                    流動比率    0.019883
+
+Generated files:
+- Predictions: C:\Users\user\Documents\project\FineTech\outputs\predictions\decision_tree_predictions.csv
+- Classification metrics: C:\Users\user\Documents\project\FineTech\outputs\metrics\decision_tree_classification_metrics.csv
+- Feature importance: C:\Users\user\Documents\project\FineTech\outputs\metrics\decision_tree_feature_importance.csv
+- Tree rules directory: C:\Users\user\Documents\project\FineTech\outputs\model_reports\decision_tree_rules
+- Saved models directory: C:\Users\user\Documents\project\FineTech\saved_models
+
+========== End of Step 3 Profile ==========

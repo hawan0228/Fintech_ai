@@ -1,0 +1,76 @@
+========== External Data Quality Summary ==========
+
+Dataset:
+- Rows: 1156
+- Unique stocks: 119
+- Years: 2015 - 2024
+
+Feature missing ratio:
+存貨週轉率 (次)                   1.000000
+應收帳款週轉次                     1.000000
+流動比率                        1.000000
+速動比率                        1.000000
+稅後淨利成長率                     0.206747
+營業利益率 OPM                   0.188581
+淨值報酬率─稅後                    0.179066
+負債/淨值比                      0.174740
+營業利益成長率                     0.148789
+股價營收比                       0.078720
+利潤邊際 NPM                    0.077855
+股價淨值比                       0.065744
+Unknown masked parameter    0.065744
+資產報酬率 ROA                   0.057093
+市值(百萬元)                     0.052768
+收盤價(元)_年                    0.000000
+
+External universe:
+stock_id stock_name market industry                    source                                                      inclusion_reason  first_available_year  last_available_year  n_years  n_rows
+    1101         台泥                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1102         亞泥                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1216         統一                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1301         台塑                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1303         南亞                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1304         台聚                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1305         華夏                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1308         亞聚                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1326         台化                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1402        遠東新                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1503         士電                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1504         東元                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1513        中興電                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1519         華城                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1590     亞德客-KY                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1605         華新                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1717         長興                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1722         台肥                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    1802         台玻                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+    2002         中鋼                 data/external/tickers.csv Selected as external universe constituent with available public data.                  2015                 2024       10      10
+
+Feature mapping:
+        original_feature                         external_feature_name                                        source                                                         formula available  missing_ratio used_in_model
+                    流動比率                                                                                                                                                                    no       1.000000            no
+                    速動比率                                                                                                                                                                    no       1.000000            no
+               存貨週轉率 (次)                                                                                                                                                                    no       1.000000            no
+                 應收帳款週轉次                                                                                                                                                                    no       1.000000            no
+                 稅後淨利成長率                       net_income_growth_proxy                   FinMind FinancialStatements        (net income_t - net income_t-1) / |net income_t-1| × 100       yes       0.206747           yes
+               營業利益率 OPM                                     OPM_proxy                   FinMind FinancialStatements                                operating income / revenue × 100       yes       0.188581           yes
+                淨值報酬率─稅後                                     ROE_proxy    FinMind FinancialStatements + BalanceSheet                         net income / average total equity × 100       yes       0.179066           yes
+                  負債/淨值比                                                                                                                                                                   yes       0.174740           yes
+                 營業利益成長率 revenue_growth_proxy / operating growth proxy   FinMind MonthRevenue or FinancialStatements                annual revenue growth or operating income growth       yes       0.148789           yes
+                   股價營收比                          price_to_sales_proxy          FinMind financial statements + price                          market capitalization / annual revenue       yes       0.078720           yes
+                利潤邊際 NPM                                     NPM_proxy                   FinMind FinancialStatements                                      net income / revenue × 100       yes       0.077855           yes
+                   股價淨值比                                           PBR                        FinMind TaiwanStockPER                                    year-end price-to-book ratio       yes       0.065744           yes
+Unknown masked parameter                                     PER proxy                        FinMind TaiwanStockPER                               year-end PER-like valuation proxy       yes       0.065744           yes
+               資產報酬率 ROA                                     ROA_proxy    FinMind FinancialStatements + BalanceSheet                         net income / average total assets × 100       yes       0.057093           yes
+                 市值(百萬元)                            market_cap_million FinMind BalanceSheet + FinMind/yfinance price year-end close price × estimated shares outstanding / 1,000,000       yes       0.052768           yes
+                收盤價(元)_年                   year-end anchor close price  FinMind TaiwanStockPrice / yfinance fallback                 first available trading close price in December       yes       0.000000           yes
+
+Integrity checks:
+       section                             item  value                                note
+       dataset                       total_rows 1156.0                                    
+       dataset                  n_unique_stocks  119.0                                    
+       dataset                          n_years   10.0                                    
+data_integrity       duplicate_stock_year_count    0.0                        Should be 0.
+data_integrity return_less_than_minus_100_count    0.0 Return should generally be >= -100.
+
+========== End Summary ==========

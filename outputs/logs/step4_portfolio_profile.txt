@@ -1,0 +1,54 @@
+========== Step 4 Portfolio Construction Profile ==========
+
+Portfolio construction assumptions:
+- Stock selection rule: rank by score_label_1 = P(label=1)
+- Top-K values: [5, 10, 20, 30]
+- Main strategy: Equal-weight portfolio
+- Extension: Score-weighted portfolio
+- Rebalancing rule: annual rebalancing
+- Position rule: long-only, no short-selling, no leverage
+- Return unit: actual_return is percentage, divided by 100 in portfolio calculation
+- Transaction cost: round-trip cost = buy fee + sell fee + sell tax
+
+Selected stocks summary:
+- Selected stock rows without weight expansion: 715
+- Selected stock rows with weight methods: 1430
+
+Portfolio annual returns summary:
+- Portfolio annual return rows: 88
+- Testing years: 1998 - 2008
+- Number of testing years: 11
+
+Portfolio metrics:
+           model_name  top_k weight_method  n_years  gross_annualized_return  gross_cumulative_return  gross_maximum_drawdown  gross_volatility  gross_sharpe_ratio  gross_win_rate  net_annualized_return  net_cumulative_return  net_maximum_drawdown  net_volatility  net_sharpe_ratio  net_win_rate
+decision_tree_entropy      5         equal       11                -0.031035                -0.293046               -0.651794          0.446900            0.122823        0.545455              -0.035185              -0.325653             -0.657520        0.446900          0.114324      0.545455
+decision_tree_entropy      5         score       11                -0.030798                -0.291144               -0.651794          0.446751            0.123375        0.545455              -0.034948              -0.323831             -0.657520        0.446751          0.114874      0.545455
+decision_tree_entropy     10         equal       11                 0.101054                 1.883341               -0.505145          0.507187            0.397511        0.636364               0.096874               1.765178             -0.508943        0.507187          0.390023      0.636364
+decision_tree_entropy     10         score       11                 0.099232                 1.831288               -0.508096          0.508066            0.395855        0.636364               0.095042               1.714818             -0.511894        0.508066          0.388380      0.636364
+decision_tree_entropy     20         equal       11                 0.128773                 2.790311               -0.462449          0.447860            0.478580        0.727273               0.124628               2.639976             -0.466247        0.447860          0.470099      0.727273
+decision_tree_entropy     20         score       11                 0.122857                 2.577428               -0.473906          0.451810            0.467018        0.727273               0.118698               2.434326             -0.477704        0.451810          0.458612      0.727273
+decision_tree_entropy     30         equal       11                 0.132556                 2.932383               -0.496981          0.461770            0.491560        0.727273               0.128355               2.774894             -0.500779        0.461770          0.483335      0.727273
+decision_tree_entropy     30         score       11                 0.130039                 2.837315               -0.499277          0.464683            0.486888        0.727273               0.125830               2.683004             -0.503075        0.464683          0.478714      0.727273
+
+All-stock benchmark metrics:
+        benchmark_name  n_years  gross_mean_annual_return  gross_cumulative_return  gross_annualized_return  gross_maximum_drawdown  gross_volatility  gross_sharpe_ratio  gross_win_rate  net_mean_annual_return  net_cumulative_return  net_annualized_return  net_maximum_drawdown  net_volatility  net_sharpe_ratio  net_win_rate
+all_stock_equal_weight       11                  0.101924                 0.357691                 0.028189               -0.503038          0.416227            0.244876        0.636364                0.098126               0.299162               0.024078             -0.506836        0.416227          0.235751      0.636364
+
+Random benchmark summary:
+          benchmark_name  top_k  n_runs  gross_annualized_return_mean  gross_annualized_return_p5  gross_annualized_return_p95  net_annualized_return_mean  net_annualized_return_p5  net_annualized_return_p95
+random_topk_equal_weight      5     500                      0.001694                   -0.096466                     0.109676                   -0.002504                 -0.100672                   0.105473
+random_topk_equal_weight     10     500                      0.016165                   -0.060139                     0.089855                    0.012006                 -0.064253                   0.085732
+random_topk_equal_weight     20     500                      0.023732                   -0.026976                     0.074558                    0.019605                 -0.031086                   0.070334
+random_topk_equal_weight     30     500                      0.025916                   -0.016035                     0.064721                    0.021793                 -0.020150                   0.060607
+
+Generated files:
+- Selected stocks: C:\Users\user\Documents\project\FineTech\outputs\selections\decision_tree_selected_stocks.csv
+- Portfolio annual returns: C:\Users\user\Documents\project\FineTech\outputs\portfolio\decision_tree_portfolio_returns.csv
+- Portfolio metrics: C:\Users\user\Documents\project\FineTech\outputs\portfolio\decision_tree_portfolio_metrics.csv
+- All-stock benchmark annual returns: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\all_stock_benchmark_annual_returns.csv
+- All-stock benchmark metrics: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\all_stock_benchmark_metrics.csv
+- Random benchmark runs: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_runs.csv
+- Random benchmark annual mean: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_annual_mean.csv
+- Random benchmark summary: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_summary.csv
+
+========== End of Step 4 Profile ==========

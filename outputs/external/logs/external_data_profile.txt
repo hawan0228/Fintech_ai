@@ -1,0 +1,86 @@
+========== External Re-run Profile ==========
+
+Dataset summary:
+- Shape: (1156, 22)
+- Years: 2015 - 2024
+
+Rows by year:
+year
+2015    112
+2016    112
+2017    113
+2018    114
+2019    115
+2020    117
+2021    118
+2022    118
+2023    118
+2024    119
+
+Label distribution:
+ReturnMean_year_Label
+-1    738
+ 1    418
+
+Feature missing ratio:
+存貨週轉率 (次)                   1.000000
+應收帳款週轉次                     1.000000
+流動比率                        1.000000
+速動比率                        1.000000
+稅後淨利成長率                     0.206747
+營業利益率 OPM                   0.188581
+淨值報酬率─稅後                    0.179066
+負債/淨值比                      0.174740
+營業利益成長率                     0.148789
+股價營收比                       0.078720
+利潤邊際 NPM                    0.077855
+股價淨值比                       0.065744
+Unknown masked parameter    0.065744
+資產報酬率 ROA                   0.057093
+市值(百萬元)                     0.052768
+收盤價(元)_年                    0.000000
+
+Temporal splits:
+ split_id                                  train_years test_years  n_train_years  n_test_years
+        1                                         2015       2016              1             1
+        2                                    2015,2016       2017              2             1
+        3                               2015,2016,2017       2018              3             1
+        4                          2015,2016,2017,2018       2019              4             1
+        5                     2015,2016,2017,2018,2019       2020              5             1
+        6                2015,2016,2017,2018,2019,2020       2021              6             1
+        7           2015,2016,2017,2018,2019,2020,2021       2022              7             1
+        8      2015,2016,2017,2018,2019,2020,2021,2022       2023              8             1
+        9 2015,2016,2017,2018,2019,2020,2021,2022,2023       2024              9             1
+
+Usable features by split:
+ split_id                                  train_years test_years  n_train_rows  n_test_rows  n_usable_features                                                                                                    usable_features                                                                             saved_model_path
+        1                                         2015       2016           112          112                 10                 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_01.joblib
+        2                                    2015,2016       2017           224          113                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_02.joblib
+        3                               2015,2016,2017       2018           337          114                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_03.joblib
+        4                          2015,2016,2017,2018       2019           451          115                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_04.joblib
+        5                     2015,2016,2017,2018,2019       2020           566          117                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_05.joblib
+        6                2015,2016,2017,2018,2019,2020       2021           683          118                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_06.joblib
+        7           2015,2016,2017,2018,2019,2020,2021       2022           801          118                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_07.joblib
+        8      2015,2016,2017,2018,2019,2020,2021,2022       2023           919          118                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_08.joblib
+        9 2015,2016,2017,2018,2019,2020,2021,2022,2023       2024          1037          119                 12 市值(百萬元)|收盤價(元)_年|Unknown masked parameter|股價淨值比|股價營收比|淨值報酬率─稅後|資產報酬率 ROA|營業利益率 OPM|利潤邊際 NPM|負債/淨值比|營業利益成長率|稅後淨利成長率 C:\Users\user\Documents\project\FineTech\saved_models\external_random_forest_split_09.joblib
+
+Valid Top-K list:
+[5, 10, 20, 30]
+
+Portfolio metrics:
+            model_name  top_k weight_method  n_years  net_annualized_return  net_cumulative_return  net_maximum_drawdown  net_volatility  net_sharpe_ratio  net_win_rate
+external_random_forest      5         equal        9               0.198454               4.100246             -0.061962        0.235431          0.926898      0.777778
+external_random_forest      5         score        9               0.199041               4.122779             -0.063339        0.242458          0.906731      0.666667
+external_random_forest     10         equal        9               0.232977               5.585606             -0.091374        0.230793          1.093820      0.888889
+external_random_forest     10         score        9               0.232375               5.556692             -0.089762        0.231493          1.088634      0.888889
+external_random_forest     20         equal        9               0.257543               6.865104             -0.082984        0.295393          0.974111      0.777778
+external_random_forest     20         score        9               0.256371               6.799385             -0.083270        0.290630          0.983565      0.777778
+external_random_forest     30         equal        9               0.248955               6.394693             -0.135084        0.261084          1.049866      0.777778
+external_random_forest     30         score        9               0.248301               6.359916             -0.132464        0.260698          1.048779      0.777778
+
+Notes:
+- External data may not fully match the 16 original financial attributes. Features with no observed values in a training split are excluded from that split.
+- Top-K values larger than the number of available stocks per year are skipped.
+- Realized Return is used only after stock selection to compute portfolio performance.
+
+========== End External Re-run Profile ==========

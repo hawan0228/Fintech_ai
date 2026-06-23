@@ -1,0 +1,44 @@
+========== Step 2 Temporal Validation Profile: remaining_years ==========
+
+Dataset summary:
+- Total rows: 2400
+- Year range: 1997 - 2008
+- Number of years: 12
+
+Rows by year:
+- 1997: 200 rows
+- 1998: 200 rows
+- 1999: 200 rows
+- 2000: 200 rows
+- 2001: 200 rows
+- 2002: 200 rows
+- 2003: 200 rows
+- 2004: 200 rows
+- 2005: 200 rows
+- 2006: 200 rows
+- 2007: 200 rows
+- 2008: 200 rows
+
+Split summary:
+- Validation mode: remaining_years
+- Number of splits: 11
+- Leakage-free: True
+
+Detailed splits:
+ split_id                                            train_years                                             test_years  train_rows  test_rows  train_label_neg1_count  train_label_pos1_count  test_label_neg1_count  test_label_pos1_count  leakage_free
+        1                                                   1997 1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008         200       2200                     109                      91                   1282                    918          True
+        2                                              1997,1998      1999,2000,2001,2002,2003,2004,2005,2006,2007,2008         400       2000                     235                     165                   1156                    844          True
+        3                                         1997,1998,1999           2000,2001,2002,2003,2004,2005,2006,2007,2008         600       1800                     346                     254                   1045                    755          True
+        4                                    1997,1998,1999,2000                2001,2002,2003,2004,2005,2006,2007,2008         800       1600                     473                     327                    918                    682          True
+        5                               1997,1998,1999,2000,2001                     2002,2003,2004,2005,2006,2007,2008        1000       1400                     591                     409                    800                    600          True
+        6                          1997,1998,1999,2000,2001,2002                          2003,2004,2005,2006,2007,2008        1200       1200                     707                     493                    684                    516          True
+        7                     1997,1998,1999,2000,2001,2002,2003                               2004,2005,2006,2007,2008        1400       1000                     805                     595                    586                    414          True
+        8                1997,1998,1999,2000,2001,2002,2003,2004                                    2005,2006,2007,2008        1600        800                     935                     665                    456                    344          True
+        9           1997,1998,1999,2000,2001,2002,2003,2004,2005                                         2006,2007,2008        1800        600                    1047                     753                    344                    256          True
+       10      1997,1998,1999,2000,2001,2002,2003,2004,2005,2006                                              2007,2008        2000        400                    1162                     838                    229                    171          True
+       11 1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007                                                   2008        2200        200                    1274                     926                    117                     83          True
+
+Interpretation:
+- This mode follows the classroom TV diagram more closely. Each split trains on earlier years and evaluates on all remaining future years.
+
+========== End of Step 2 Profile ==========

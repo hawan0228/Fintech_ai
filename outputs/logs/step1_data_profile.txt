@@ -1,0 +1,68 @@
+========== Step 1 Data Profile ==========
+
+Total rows: 2400
+Total columns: 22
+
+Year range:
+- Min year: 1997
+- Max year: 2008
+
+Rows by year:
+- 1997: 200 rows
+- 1998: 200 rows
+- 1999: 200 rows
+- 2000: 200 rows
+- 2001: 200 rows
+- 2002: 200 rows
+- 2003: 200 rows
+- 2004: 200 rows
+- 2005: 200 rows
+- 2006: 200 rows
+- 2007: 200 rows
+- 2008: 200 rows
+
+Label distribution:
+- label -1: 1391 rows
+- label 1: 1009 rows
+
+Return summary:
+count    2400.000000
+mean        7.687772
+std        64.507204
+min      -100.000000
+25%       -33.328375
+50%        -4.220650
+75%        35.797200
+max       677.744500
+Name: Return, dtype: float64
+
+Missing values in feature columns:
+- No missing values in feature columns.
+
+Feature columns after standardization:
+- 市值(百萬元)
+- 收盤價(元)_年
+- Unknown masked parameter
+- 股價淨值比
+- 股價營收比
+- 淨值報酬率─稅後
+- 資產報酬率 ROA
+- 營業利益率 OPM
+- 利潤邊際 NPM
+- 負債/淨值比
+- 流動比率
+- 速動比率
+- 存貨週轉率 (次)
+- 應收帳款週轉次
+- 營業利益成長率
+- 稅後淨利成長率
+
+First 5 rows after cleaning:
+證券代碼 簡稱     年月  year   Return  ReturnMean_year_Label
+1101 台泥 199712  1997 -19.7175                      1
+1102 亞泥 199712  1997 -10.7026                      1
+1103 嘉泥 199712  1997 -27.6940                     -1
+1104 環泥 199712  1997 -13.4545                      1
+1107 建台 199712  1997 -48.7382                     -1
+
+========== End of Profile ==========
