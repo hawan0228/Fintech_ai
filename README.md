@@ -358,9 +358,9 @@ python generate_external_figures.py
 python build_external_metadata.py
 ```
 
-### 8.3 Demo Mode
+### 8.3 Demo Mode (CLI)
 
-目前版本的 demo 為 CLI 模式，可先驗證模型能否處理同格式的新測試資料。若後續改為 Web demo，可參考本文最後的 Web 架構設計章節。
+CLI demo 可驗證模型能否處理同格式的新測試資料。
 
 對新測試資料執行 demo：
 
@@ -375,6 +375,48 @@ python main.py demo --input path/to/new_testing_data.xlsx --model random_forest 
 ```
 
 如果新資料含有 `Return` / `ReturnMean_year_Label`，demo 會額外輸出投組報酬與績效；若沒有，則至少輸出預測與選股結果。
+
+### 8.4 Web Demo
+
+Web demo 將 CLI demo 包裝成可上傳檔案、選模型、線上推論並顯示結果的單頁介面
+（FastAPI 薄 API 層 + 既有 `src/` 分析模組，實作於 `webapp/`）。
+
+啟動：
+
+```bash
+python run_webapp.py            # http://127.0.0.1:8000
+python run_webapp.py --port 8888
+```
+
+開啟瀏覽器進入 `http://127.0.0.1:8000`，流程：
+
+1. 上傳 `.xlsx` / `.csv` 測試資料（需含「證券代碼」「年月」）。
+2. 選擇分類模型、Top-K 與**推論策略**。
+3. 按「開始分析」，後端推論。
+4. 頁面顯示：摘要卡片、Top-K 選股表、完整預測表；若資料含真實 `Return`，另顯示投組績效與分類品質指標；可下載預測 CSV。
+
+推論策略（對應第 15.8 節）：
+
+- **策略 B · 即時重訓**（預設 fallback）：依 demo 年份，用該年以前的歷史 cleaned data 即時重新訓練後推論。不依賴 `saved_models/`。
+- **策略 A · 載入預訓練模型**：直接載入 `saved_models/` 對應 split 的 `.joblib`（依 `test_year → split` 對應），免訓練、現場秒回。
+  - 因為對應 split 的訓練資料與策略 B 完全相同（同 seed），兩者**選股與分數一致**，但策略 A 更快。
+  - 涵蓋年份 1998–2008；不在範圍內的年份會自動 fallback 為即時重訓。
+  - 需先執行 `train_decision_tree.py` / `train_task2_models.py` 產生模型檔；若 `saved_models/` 不完整，前端會自動停用策略 A。
+
+可用 `data/demo_samples/` 內的範例檔測試：
+
+- `sample_2008_with_return.csv`（含真實報酬，會顯示投組績效）
+- `sample_2008_features_only.csv`（純特徵，只顯示預測與選股）
+
+API（對應第 15.7 節）：
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| `GET` | `/api/health` | 服務健康檢查 |
+| `GET` | `/api/demo/models` | 可用模型列表 |
+| `GET` | `/api/demo/schema` | 必要欄位與特徵欄位說明 |
+| `GET` | `/api/demo/pretrained` | 預訓練模型可用情形（策略 A 是否可用、涵蓋年份）|
+| `POST` | `/api/demo/run` | 上傳資料、指定模型 / Top-K / strategy，回傳推論結果 |
 
 ## 9. Main Output Files
 

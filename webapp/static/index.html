@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>選股模型 Web Demo</title>
+<style>
+  :root {
+    --bg: #0f1320;
+    --panel: #171c2e;
+    --panel-2: #1f2740;
+    --border: #2a3350;
+    --text: #e6e9f2;
+    --muted: #9aa3bd;
+    --accent: #5b8cff;
+    --accent-2: #3ad0a0;
+    --danger: #ff6b6b;
+    --warn: #ffb454;
+    --radius: 12px;
+    --mono: "SFMono-Regular", "Consolas", "Menlo", monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Microsoft JhengHei", system-ui, sans-serif;
+    background: radial-gradient(1200px 600px at 70% -10%, #1b2440 0%, var(--bg) 60%), var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  header {
+    padding: 28px 32px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: .3px; }
+  header p { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 32px 64px;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; } }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .panel h2 {
+    margin: 0 0 14px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+  }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 6px; }
+  select, input[type=number] {
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .drop {
+    border: 1.5px dashed var(--border);
+    border-radius: 10px;
+    padding: 22px 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+    background: var(--panel-2);
+  }
+  .drop:hover, .drop.drag { border-color: var(--accent); background: #1b2440; }
+  .drop .big { font-size: 14px; color: var(--text); }
+  .drop .small { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .filechip {
+    margin-top: 10px; font-size: 13px; color: var(--accent-2);
+    word-break: break-all;
+  }
+  button.run {
+    margin-top: 18px;
+    width: 100%;
+    background: linear-gradient(180deg, var(--accent), #4576e0);
+    color: white;
+    border: 0;
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  button.run:disabled { opacity: .5; cursor: not-allowed; }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 14px; }
+  .hint code { font-family: var(--mono); color: var(--accent-2); }
+
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 700px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  .card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .card .k { font-size: 12px; color: var(--muted); }
+  .card .v { font-size: 22px; font-weight: 700; margin-top: 4px; font-family: var(--mono); }
+  .card .v.pos { color: var(--accent-2); }
+  .card .v.neg { color: var(--danger); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--border); }
+  th:first-child, td:first-child,
+  th:nth-child(2), td:nth-child(2) { text-align: left; }
+  th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--panel); }
+  tbody tr:hover { background: var(--panel-2); }
+  .tablewrap { max-height: 420px; overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+  .num { font-family: var(--mono); }
+  .pos { color: var(--accent-2); }
+  .neg { color: var(--danger); }
+
+  .tabs { display: flex; gap: 8px; margin: 18px 0 12px; flex-wrap: wrap; }
+  .tab {
+    padding: 7px 14px; border-radius: 8px; cursor: pointer;
+    background: var(--panel-2); border: 1px solid var(--border);
+    font-size: 13px; color: var(--muted);
+  }
+  .tab.active { color: white; border-color: var(--accent); background: #22305a; }
+
+  .msg { padding: 12px 14px; border-radius: 9px; font-size: 13px; margin-bottom: 12px; }
+  .msg.err { background: rgba(255,107,107,.12); border: 1px solid var(--danger); color: #ffd3d3; }
+  .msg.warn { background: rgba(255,180,84,.1); border: 1px solid var(--warn); color: #ffe6c2; }
+  .muted { color: var(--muted); }
+  .right-empty { color: var(--muted); padding: 40px; text-align: center; }
+  .spinner {
+    display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4);
+    border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite;
+    vertical-align: -3px; margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .dlbtn {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 13px;
+  }
+  .pillbar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 12px; }
+  .pill { font-size:12px; background:var(--panel-2); border:1px solid var(--border); padding:4px 10px; border-radius:999px; color:var(--muted);}
+</style>
+</head>
+<body>
+<header>
+  <h1>📈 股票篩選模型 · Web Demo</h1>
+  <p>上傳同格式測試資料 → 選擇模型與 Top-K → 推論並回傳選股結果與投組績效（Task 1 / Task 2 模型）</p>
+</header>
+
+<div class="wrap">
+  <!-- 左側：控制面板 -->
+  <div>
+    <div class="panel">
+      <h2>1 · 上傳資料</h2>
+      <div class="drop" id="drop">
+        <div class="big">點此選擇，或拖曳檔案到這裡</div>
+        <div class="small">支援 .xlsx / .csv（需含「證券代碼」「年月」）</div>
+      </div>
+      <input type="file" id="file" accept=".csv,.xlsx,.xls" style="display:none" />
+      <div class="filechip" id="filechip"></div>
+
+      <h2 style="margin-top:22px">2 · 模型設定</h2>
+      <label for="model">分類模型</label>
+      <select id="model"></select>
+      <label for="topk">Top-K 選股數</label>
+      <input type="number" id="topk" value="10" min="1" max="200" />
+      <label for="strategy">推論策略</label>
+      <select id="strategy">
+        <option value="retrain">即時重訓（策略B）</option>
+        <option value="pretrained">載入預訓練模型（策略A · 較快）</option>
+      </select>
+      <div class="hint" id="strategyHint"></div>
+
+      <button class="run" id="runbtn" disabled>開始分析</button>
+
+      <div class="hint">
+        測試資料若含 <code>Return</code> / <code>ReturnMean_year_Label</code>，會額外顯示投組績效；
+        否則僅輸出預測與選股。<br/>
+        沒有檔案？可用 <code>data/processed/cleaned_top200.csv</code> 任一年資料測試。
+      </div>
+    </div>
+  </div>
+
+  <!-- 右側：結果面板 -->
+  <div class="panel" id="results">
+    <h2>結果</h2>
+    <div class="right-empty" id="empty">尚未執行分析。請於左側上傳資料並按「開始分析」。</div>
+    <div id="output" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+let chosenFile = null;
+let lastResult = null;
+
+// ---- 載入模型清單 ----
+async function loadModels() {
+  try {
+    const r = await fetch("/api/demo/models");
+    const data = await r.json();
+    const sel = $("#model");
+    sel.innerHTML = "";
+    data.models.forEach((m, i) => {
+      const o = document.createElement("option");
+      o.value = m.value; o.textContent = m.label;
+      if (m.value === "random_forest") o.selected = true;
+      sel.appendChild(o);
+    });
+  } catch (e) {
+    $("#model").innerHTML = '<option value="random_forest">Random Forest</option>';
+  }
+}
+loadModels();
+
+// ---- 偵測預訓練模型可用性（策略 A）----
+async function loadPretrained() {
+  const sel = $("#strategy");
+  const hint = $("#strategyHint");
+  const opt = sel.querySelector('option[value="pretrained"]');
+  try {
+    const r = await fetch("/api/demo/pretrained");
+    const st = await r.json();
+    if (st.available) {
+      opt.disabled = false;
+      sel.value = "pretrained"; // 可用時預設用較快的策略 A
+      const ys = st.covered_years || [];
+      hint.innerHTML = `策略A：載入 <code>saved_models/</code> 預訓練模型，免訓練、結果與重訓一致。`
+        + ` 涵蓋年份 ${ys[0]}–${ys[ys.length-1]}，其餘年份自動 fallback 重訓。`;
+    } else {
+      opt.disabled = true;
+      sel.value = "retrain";
+      hint.innerHTML = `策略A 不可用（找不到完整 <code>saved_models/</code>）。`
+        + ` 可執行 <code>train_*.py</code> 產生模型檔後啟用。`;
+    }
+  } catch (e) {
+    opt.disabled = true;
+    sel.value = "retrain";
+    hint.textContent = "";
+  }
+}
+loadPretrained();
+
+// ---- 檔案選取 ----
+const drop = $("#drop");
+const fileInput = $("#file");
+drop.addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", () => setFile(fileInput.files[0]));
+["dragover","dragenter"].forEach(ev =>
+  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("drag"); }));
+["dragleave","drop"].forEach(ev =>
+  drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("drag"); }));
+drop.addEventListener("drop", e => {
+  if (e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+});
+function setFile(f) {
+  chosenFile = f || null;
+  $("#filechip").textContent = f ? "✓ " + f.name : "";
+  $("#runbtn").disabled = !f;
+}
+
+// ---- 執行分析 ----
+$("#runbtn").addEventListener("click", run);
+async function run() {
+  if (!chosenFile) return;
+  const btn = $("#runbtn");
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>分析中…';
+  $("#empty").style.display = "none";
+  const out = $("#output");
+  out.style.display = "block";
+  out.innerHTML = '<div class="muted">模型訓練與推論中，請稍候…</div>';
+
+  const fd = new FormData();
+  fd.append("file", chosenFile);
+  fd.append("model", $("#model").value);
+  fd.append("top_k", $("#topk").value || "10");
+  fd.append("strategy", $("#strategy").value || "retrain");
+
+  try {
+    const r = await fetch("/api/demo/run", { method: "POST", body: fd });
+    const data = await r.json();
+    if (!r.ok || !data.ok) {
+      out.innerHTML = `<div class="msg err"><b>分析失敗：</b>${escapeHtml(data.error || "未知錯誤")}</div>`;
+    } else {
+      lastResult = data;
+      render(data);
+    }
+  } catch (e) {
+    out.innerHTML = `<div class="msg err"><b>連線失敗：</b>${escapeHtml(String(e))}</div>`;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "開始分析";
+  }
+}
+
+// ---- 渲染結果 ----
+function render(d) {
+  const s = d.summary;
+  const out = $("#output");
+  let html = "";
+
+  // warnings
+  (d.warnings || []).forEach(w => {
+    html += `<div class="msg warn">⚠ ${escapeHtml(w)}</div>`;
+  });
+
+  // pills
+  html += `<div class="pillbar">
+    <span class="pill">模型：${escapeHtml(s.model_label)}</span>
+    <span class="pill">Top-K：${s.top_k}</span>
+    <span class="pill">年份：${(s.demo_years||[]).join(", ")}</span>
+    <span class="pill">${escapeHtml(s.strategy_label || "")}</span>
+    <span class="pill">${s.has_return ? "含真實報酬" : "無真實報酬"}</span>
+  </div>`;
+
+  // summary cards
+  const p = d.portfolio || {};
+  html += `<div class="cards">
+    ${card("資料筆數", s.n_rows)}
+    ${card("預測股票數", s.n_predicted_stocks)}
+    ${card("特徵補值數", s.feature_missing_count)}
+    ${p.available
+      ? card("年化淨報酬", pct(p.summary.annualized_net_return), signClass(p.summary.annualized_net_return))
+      : card("投組績效", "—")}
+  </div>`;
+
+  // portfolio summary
+  if (p.available) {
+    const m = p.summary;
+    html += `<div class="cards" style="margin-top:12px">
+      ${card("累積淨報酬", pct(m.cumulative_net_return), signClass(m.cumulative_net_return))}
+      ${card("最大回撤", pct(m.maximum_drawdown), "neg")}
+      ${card("年均報酬", pct(m.mean_annual_net_return), signClass(m.mean_annual_net_return))}
+      ${card("勝率", pct(m.win_rate))}
+    </div>`;
+  } else if (p.reason) {
+    html += `<div class="msg warn" style="margin-top:12px">ℹ ${escapeHtml(p.reason)}</div>`;
+  }
+
+  // classification quality
+  if (d.classification) {
+    const c = d.classification;
+    html += `<div class="cards" style="margin-top:12px">
+      ${card("Accuracy", num(c.accuracy))}
+      ${card("Precision(1)", num(c.precision_label_1))}
+      ${card("Recall(1)", num(c.recall_label_1))}
+      ${card("F1(1)", num(c.f1_label_1))}
+    </div>`;
+  }
+
+  // tabs
+  html += `<div class="tabs">
+    <div class="tab active" data-tab="sel">Top-K 選股 (${d.selected_stocks.length})</div>
+    <div class="tab" data-tab="pred">完整預測 (${d.predictions.length})</div>
+    <button class="dlbtn" id="dl" style="margin-left:auto">⬇ 下載預測 CSV</button>
+  </div>`;
+  html += `<div id="tab-sel">${selTable(d.selected_stocks, s.has_return, s.has_label)}</div>`;
+  html += `<div id="tab-pred" style="display:none">${predTable(d.predictions, s.has_return, s.has_label)}</div>`;
+
+  out.innerHTML = html;
+
+  out.querySelectorAll(".tab").forEach(t => {
+    t.addEventListener("click", () => {
+      out.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      const tab = t.dataset.tab;
+      $("#tab-sel").style.display = tab === "sel" ? "block" : "none";
+      $("#tab-pred").style.display = tab === "pred" ? "block" : "none";
+    });
+  });
+  $("#dl").addEventListener("click", () => downloadCsv(d.predictions, "demo_predictions.csv"));
+}
+
+function card(k, v, cls="") {
+  return `<div class="card"><div class="k">${k}</div><div class="v ${cls}">${v}</div></div>`;
+}
+function selTable(rows, hasRet, hasLabel) {
+  if (!rows.length) return '<div class="right-empty">無選股結果。</div>';
+  let h = `<div class="tablewrap"><table><thead><tr>
+    <th>排名</th><th>代碼</th><th>名稱</th><th>P(label=1)</th><th>預測</th>`;
+  if (hasLabel) h += `<th>實際標籤</th>`;
+  if (hasRet) h += `<th>實際報酬%</th>`;
+  h += `</tr></thead><tbody>`;
+  rows.forEach(r => {
+    h += `<tr><td>${r.rank}</td><td>${escapeHtml(r["證券代碼"])}</td><td>${escapeHtml(r["簡稱"])}</td>
+      <td class="num">${num(r.score_label_1)}</td>${labelCell(r.predicted_label)}`;
+    if (hasLabel) h += labelCell(r.actual_label);
+    if (hasRet) h += `<td class="num ${signClass(r.actual_return)}">${fnum(r.actual_return)}</td>`;
+    h += `</tr>`;
+  });
+  return h + "</tbody></table></div>";
+}
+function predTable(rows, hasRet, hasLabel) {
+  if (!rows.length) return '<div class="right-empty">無預測結果。</div>';
+  let h = `<div class="tablewrap"><table><thead><tr>
+    <th>年</th><th>代碼</th><th>名稱</th><th>預測</th><th>P(label=1)</th>`;
+  if (hasLabel) h += `<th>實際標籤</th>`;
+  if (hasRet) h += `<th>實際報酬%</th>`;
+  h += `</tr></thead><tbody>`;
+  rows.forEach(r => {
+    h += `<tr><td class="num">${r.year}</td><td>${escapeHtml(r["證券代碼"])}</td><td>${escapeHtml(r["簡稱"])}</td>
+      ${labelCell(r.predicted_label)}<td class="num">${num(r.score_label_1)}</td>`;
+    if (hasLabel) h += labelCell(r.actual_label);
+    if (hasRet) h += `<td class="num ${signClass(r.actual_return)}">${fnum(r.actual_return)}</td>`;
+    h += `</tr>`;
+  });
+  return h + "</tbody></table></div>";
+}
+function labelCell(v) {
+  if (v === null || v === undefined) return `<td class="muted">—</td>`;
+  const cls = Number(v) === 1 ? "pos" : "neg";
+  return `<td class="num ${cls}">${v}</td>`;
+}
+
+// ---- formatting helpers ----
+function num(v){ return (v===null||v===undefined||isNaN(v)) ? "—" : Number(v).toFixed(3); }
+function fnum(v){ return (v===null||v===undefined||isNaN(v)) ? "—" : Number(v).toFixed(2); }
+function pct(v){ return (v===null||v===undefined||isNaN(v)) ? "—" : (Number(v)*100).toFixed(2)+"%"; }
+function signClass(v){ if(v===null||v===undefined||isNaN(v)) return ""; return Number(v)>=0?"pos":"neg"; }
+function escapeHtml(s){ return String(s==null?"":s).replace(/[&<>"']/g, c => (
+  {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+function downloadCsv(rows, name) {
+  if (!rows.length) return;
+  const cols = Object.keys(rows[0]);
+  const lines = [cols.join(",")];
+  rows.forEach(r => lines.push(cols.map(c => {
+    let v = r[c]; if (v===null||v===undefined) v="";
+    v = String(v); if (v.includes(",")||v.includes('"')) v = '"'+v.replace(/"/g,'""')+'"';
+    return v;
+  }).join(",")));
+  const blob = new Blob(["﻿"+lines.join("\n")], {type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>
