@@ -64,10 +64,10 @@ Unknown masked parameter    0.027307
                     流動比率    0.019883
 
 Generated files:
-- Predictions: C:\Users\user\Documents\project\FineTech\outputs\predictions\decision_tree_predictions.csv
-- Classification metrics: C:\Users\user\Documents\project\FineTech\outputs\metrics\decision_tree_classification_metrics.csv
-- Feature importance: C:\Users\user\Documents\project\FineTech\outputs\metrics\decision_tree_feature_importance.csv
-- Tree rules directory: C:\Users\user\Documents\project\FineTech\outputs\model_reports\decision_tree_rules
-- Saved models directory: C:\Users\user\Documents\project\FineTech\saved_models
+- Predictions: C:\Users\user\Documents\project\proj3\outputs\predictions\decision_tree_predictions.csv
+- Classification metrics: C:\Users\user\Documents\project\proj3\outputs\metrics\decision_tree_classification_metrics.csv
+- Feature importance: C:\Users\user\Documents\project\proj3\outputs\metrics\decision_tree_feature_importance.csv
+- Tree rules directory: C:\Users\user\Documents\project\proj3\outputs\model_reports\decision_tree_rules
+- Saved models directory: C:\Users\user\Documents\project\proj3\saved_models
 
 ========== End of Step 3 Profile ==========

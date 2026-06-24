@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AIFT Final Project 專題儀表板</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="canvas-shell">
+    <header class="masthead">
+      <nav class="topbar">
+        <div class="brand-lockup">
+          <p class="brand-eyebrow">AIFT Final Project</p>
+          <p class="brand-title">研究儀表板</p>
+        </div>
+        <div class="topbar-links">
+          <a href="#requirements">需求對照</a>
+          <a href="#results">研究結果</a>
+          <a href="#gallery">圖表總覽</a>
+          <a href="#demo-lab">展示</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="hero-kicker">選股、Backtesting、外部資料重跑</p>
+          <h1>AI FINTECH</h1>
+          <p class="hero-text">
+            這個頁面直接讀取專案正式輸出，涵蓋任務 1、任務 2、SVR-GA、任務 3 外部資料重跑、
+            基準比較、圖表成果與 Web 展示。所有數值都來自既有 CSV / PNG 輸出檔，
+            並沿用同一套 preprocessing 與模型推論流程。
+          </p>
+          <div class="hero-pills">
+            <span class="pill">11 年次年度時序驗證</span>
+            <span class="pill">55 個已保存模型已落盤</span>
+            <span class="pill">CLI / Web 共用分析核心</span>
+          </div>
+        </section>
+
+        <aside class="hero-aside">
+          <div class="hero-aside-card">
+            <p class="hero-card-label">專題訊號總覽</p>
+            <div class="hero-metrics" id="heroMetrics">
+              <div class="hero-metric">
+                <span>資料筆數</span>
+                <strong>-</strong>
+              </div>
+              <div class="hero-metric">
+                <span>內部最強模型</span>
+                <strong>-</strong>
+              </div>
+              <div class="hero-metric">
+                <span>外部資料重跑</span>
+                <strong>-</strong>
+              </div>
+              <div class="hero-metric">
+                <span>最新展示</span>
+                <strong>-</strong>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section id="requirements" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">需求覆蓋</p>
+            <h2>專題需求對照</h2>
+          </div>
+          <p class="section-description">
+            以任務為單位標示目前成果、核心證據與代表性績效，方便你直接對照報告需求。
+          </p>
+        </div>
+        <div id="requirementCards" class="requirement-grid"></div>
+      </section>
+
+      <section id="method" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">方法與可靠性</p>
+            <h2>資料、流程與驗證</h2>
+          </div>
+          <p class="section-description">
+            展示正式資料集概況、時間序列驗證設計與輸出檔完整性檢查，讓頁面本身就能說明結果為何可信。
+          </p>
+        </div>
+
+        <div class="two-column-grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>專題資料集摘要</h3>
+              <span class="panel-note">cleaned_top200.csv</span>
+            </div>
+            <div id="projectDatasetSnapshot" class="key-grid"></div>
+            <div class="subsection">
+              <h4>年度筆數分布</h4>
+              <div id="projectYearBars" class="bars"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>研究流程時間線</h3>
+              <span class="panel-note">從原始資料到展示交付</span>
+            </div>
+            <div id="timelineSteps" class="timeline"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h3>輸出檔完整性檢查</h3>
+            <span class="panel-note">依目前工作區即時計算</span>
+          </div>
+          <div id="validationChecks" class="validation-grid"></div>
+        </section>
+      </section>
+
+      <section id="results" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">研究結果</p>
+            <h2>模型成果與比較</h2>
+          </div>
+          <p class="section-description">
+            顯示各模型最佳策略、整體分類表現與外部資料重跑結果，讓報告中的比較邏輯直接視覺化。
+          </p>
+        </div>
+
+        <div class="two-column-grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>模型排行榜</h3>
+              <span class="panel-note">各模型最佳策略</span>
+            </div>
+            <div id="leaderboardBars" class="bars"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>整體分類指標</h3>
+              <span class="panel-note">整體彙總結果</span>
+            </div>
+            <div id="classificationOverviewTable" class="table-shell"></div>
+          </section>
+        </div>
+
+        <div class="two-column-grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>最佳策略總表</h3>
+              <span class="panel-note">內部模型</span>
+            </div>
+            <div id="bestModelTable" class="table-shell"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>外部資料重跑摘要</h3>
+              <span class="panel-note">任務 3</span>
+            </div>
+            <div id="externalTable" class="table-shell"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="gallery" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">圖表總覽</p>
+            <h2>既有圖表成果</h2>
+          </div>
+          <p class="section-description">
+            直接掛上專案產出的 PNG 圖表，讓頁面本身也可作為報告簡報或 demo 展示入口。
+          </p>
+        </div>
+        <div id="figureGallery" class="gallery-grid"></div>
+      </section>
+
+      <section id="downloads" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">下載與展示快照</p>
+            <h2>輸出檔案與最新 Demo 結果</h2>
+          </div>
+          <p class="section-description">
+            保留關鍵 CSV/PNG 下載入口，並預載目前 `outputs/demo` 的最新結果作為預設展示。
+          </p>
+        </div>
+
+        <div class="two-column-grid">
+          <section class="panel">
+            <div class="panel-head">
+              <h3>重要下載</h3>
+              <span class="panel-note">可直接用於報告的輸出檔</span>
+            </div>
+            <div id="downloadLinks" class="download-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
+              <h3>最新展示快照</h3>
+              <span class="panel-note">預載自 outputs/demo</span>
+            </div>
+            <div id="latestDemoSummary" class="key-grid empty-state">尚未找到展示輸出。</div>
+            <div id="latestDemoTable" class="table-shell empty-state">尚未找到展示輸出。</div>
+          </section>
+        </div>
+      </section>
+
+      <section id="demo-lab" class="section-block">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">互動式展示區</p>
+            <h2>互動式 Web 展示</h2>
+          </div>
+          <p class="section-description">
+            先上傳資料，系統會做正式 preprocessing 檢查，再沿用專案模型完成推論、Top-K 選股與績效摘要。
+          </p>
+        </div>
+
+        <div class="demo-layout">
+          <aside class="demo-sidebar">
+            <section class="panel sticky-panel">
+              <div class="panel-head">
+                <h3>展示控制區</h3>
+                <span class="panel-note">上傳 -> 驗證 -> 執行</span>
+              </div>
+
+              <form id="uploadForm" class="stacked-form">
+                <label class="field">
+                  <span>資料檔案</span>
+                  <input id="datasetFile" name="file" type="file" accept=".csv,.xlsx,.xls" required>
+                </label>
+                <button id="uploadButton" class="button button-secondary" type="submit">檢查資料</button>
+              </form>
+
+              <form id="runForm" class="stacked-form">
+                <label class="field">
+                  <span>模型</span>
+                  <select id="modelSelect" name="model_name"></select>
+                </label>
+
+                <label class="field">
+                  <span>Top-K</span>
+                  <div class="inline-control">
+                    <input id="topKRange" type="range" min="1" max="30" step="1" value="10">
+                    <input id="topKInput" name="top_k" type="number" min="1" max="200" step="1" value="10">
+                  </div>
+                </label>
+
+                <button id="runButton" class="button button-primary" type="submit" disabled>執行展示</button>
+              </form>
+
+              <div id="statusCard" class="status-card">
+                <p class="status-title">系統狀態</p>
+                <p id="statusMessage" class="status-message">系統初始化中。</p>
+              </div>
+
+              <div class="guardrail-box">
+                <h4>方法守則</h4>
+                <ul class="plain-list">
+                  <li>Demo 與 CLI 共用 preprocessing，避免展示流程與正式分析脫節。</li>
+                  <li>若存在對應年度 saved model，優先載入；否則使用歷史資料重訓。</li>
+                  <li>Top-K 排名只用模型分數，不會引用 realized return 做排序。</li>
+                  <li>若輸入資料含有 `Return`，才會計算投組績效與累積報酬。</li>
+                </ul>
+              </div>
+
+              <div class="guardrail-box">
+                <h4>執行環境狀態</h4>
+                <div id="healthSummary" class="mini-grid"></div>
+              </div>
+            </section>
+          </aside>
+
+          <section class="demo-results">
+            <div id="summaryCards" class="summary-grid"></div>
+
+            <div class="two-column-grid">
+              <section class="panel">
+                <div class="panel-head">
+                  <h3>上傳資料摘要</h3>
+                  <span class="panel-note">僅顯示本次上傳</span>
+                </div>
+                <div id="uploadDatasetSnapshot" class="key-grid empty-state">尚未上傳資料。</div>
+                <div class="subsection">
+                  <h4>年度列數</h4>
+                  <div id="uploadYearBars" class="bars empty-state">尚未上傳資料。</div>
+                </div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <h3>特徵覆蓋率</h3>
+                  <span class="panel-note">覆蓋率最低的前 10 項</span>
+                </div>
+                <div id="featureCoverage" class="bars empty-state">尚未上傳資料。</div>
+              </section>
+            </div>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>Demo 結果摘要</h3>
+                <span class="panel-note">目前顯示最新 Demo 或本次執行結果</span>
+              </div>
+              <div id="performanceSummary" class="key-grid empty-state">尚未執行 Demo。</div>
+              <div id="curveChart" class="chart-surface empty-state">尚未執行 Demo。</div>
+            </section>
+
+            <div class="two-column-grid">
+              <section class="panel">
+                <div class="panel-head">
+                  <h3>入選股票</h3>
+                  <span class="panel-note">Top-K 排名結果</span>
+                </div>
+                <div id="selectedTable" class="table-shell empty-state">尚未執行 Demo。</div>
+              </section>
+
+              <section class="panel">
+                <div class="panel-head">
+                  <h3>投組指標</h3>
+                  <span class="panel-note">由目前展示結果產生</span>
+                </div>
+                <div id="metricTable" class="table-shell empty-state">尚未執行 Demo。</div>
+                <div class="subsection">
+                  <h4>Classification metrics</h4>
+                  <div id="classificationDetailTable" class="table-shell empty-state">若輸入含有 Label，這裡會顯示分類驗證。</div>
+                </div>
+              </section>
+            </div>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>預測矩陣</h3>
+                <span class="panel-note">完整推論輸出</span>
+              </div>
+              <div id="predictionTable" class="table-shell empty-state">尚未執行 Demo。</div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <h3>輸出檔案</h3>
+                <span class="panel-note">可追溯檔案路徑</span>
+              </div>
+              <pre id="artifactPaths" class="artifact-box">尚未執行 Demo。</pre>
+            </section>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -68,8 +68,8 @@ random_forest      速動比率    0.061909
 random_forest   營業利益成長率    0.060052
 
 Generated files:
-- Predictions: C:\Users\user\Documents\project\FineTech\outputs\predictions\task2_classification_predictions.csv
-- Classification metrics: C:\Users\user\Documents\project\FineTech\outputs\metrics\task2_classification_metrics.csv
-- Feature importance: C:\Users\user\Documents\project\FineTech\outputs\metrics\task2_feature_importance.csv
+- Predictions: C:\Users\user\Documents\project\proj3\outputs\predictions\task2_classification_predictions.csv
+- Classification metrics: C:\Users\user\Documents\project\proj3\outputs\metrics\task2_classification_metrics.csv
+- Feature importance: C:\Users\user\Documents\project\proj3\outputs\metrics\task2_feature_importance.csv
 
 ========== End of Step 5 Profile ==========

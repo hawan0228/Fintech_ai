@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import argparse
 
-from src.demo_runner import run_demo
+from src.demo_runner import SUPPORTED_DEMO_MODELS, run_demo
 
 
 def main() -> None:
@@ -22,12 +22,7 @@ def main() -> None:
         "--model",
         type=str,
         default="random_forest",
-        choices=[
-            "decision_tree_entropy",
-            "logistic_regression",
-            "random_forest",
-            "gradient_boosting",
-        ],
+        choices=SUPPORTED_DEMO_MODELS,
         help="Classification model used for demo prediction.",
     )
 

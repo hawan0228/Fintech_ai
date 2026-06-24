@@ -1,154 +1,111 @@
 # AIFT Final Project
 
-Stock-Selection Modeling, Backtesting, and Financial Data Crawling
+以台股年度資料進行股票篩選建模、時間序列回測、風險衡量、外部財務資料重建，以及 CLI / Web Demo 展示的完整專題實作。
 
-本專案對應 AIFT Final Project 需求，目標是以年資料進行股票篩選建模、時間序列回測、風險衡量、外部財務資料爬取與重跑實驗，並保留可 demo 的執行流程。
+本專案目前已包含：
 
-## 1. Project Overview
+- Task 1：`Decision Tree (Entropy)` 股票篩選與回測
+- Task 2：`Logistic Regression`、`Random Forest`、`Gradient Boosting` 比較
+- Task 2 延伸：`SVR-GA` 連續報酬預測與排序選股
+- Task 3：外部財務資料抓取、特徵重建、外部資料重跑與 benchmark 比較
+- Demo：CLI Demo 與 Web Demo
 
-本專案聚焦三個核心要求：
+---
 
-1. 使用決策樹模型完成股票篩選任務。
-2. 使用另一種方法完成相同任務，並與 Task 1 進行比較。
-3. 建立外部資料爬蟲，重建相似財務資料集，並重新執行選股流程。
+## 1. 專案重點
 
-專案的設計原則如下：
+本 repo 的核心目標不是只訓練分類器，而是把整條研究鏈路做完整：
 
-- 僅使用訓練期間資料建立模型，不使用未來測試資料。
-- 將股票篩選結果轉換為可回測的投資組合績效。
-- 除報酬外，同時評估最大回撤、波動度、Sharpe ratio 等風險指標。
-- 保留 demo 模式，讓模型可以對新格式相同的測試資料進行預測。
+1. 清理原始資料並建立可重現的 schema
+2. 用時間序列切分避免未來資料外洩（future leakage）
+3. 將模型分數轉成 Top-K 選股結果
+4. 將選股結果轉成可回測投組
+5. 比較報酬、風險、benchmark 與外部重跑結果
+6. 提供可展示的 CLI / Web Demo
 
-## 2. Requirement Mapping
+---
 
-| 需求書項目 | 本專案對應實作 |
+## 2. 目前專案狀態
+
+以下為目前 repo 內既有正式輸出檔的狀態快照：
+
+| 項目 | 目前狀態 |
+| --- | --- |
+| 主資料集 | `data/processed/cleaned_top200.csv`，`2400` 筆、`22` 欄，年份 `1997-2008` |
+| 特徵數 | `16` 個 canonical features |
+| Temporal splits | `next_year = 11` 組、`remaining_years = 11` 組 |
+| Saved models | 主流程模型共 `55` 個：Decision Tree `11`、Task 2 classifiers `33`、SVR-GA `11` |
+| 已存在 Demo 輸出 | `outputs/demo/` 下已有 predictions / selections / metrics / profile |
+| Web Demo | 已完成，可直接啟動 |
+| 目前內部最佳策略 | `Random Forest`，`Top-5`，`equal`，`net annualized return = 26.34%` |
+| 目前外部最佳策略 | `外部 Random Forest`，`Top-20`，`equal`，`net annualized return = 25.75%` |
+
+注意：上述數值是根據目前 repo 內既有輸出檔彙整而來；若重新訓練、重跑外部資料或更新輸出檔，結果可能會變動。
+
+---
+
+## 3. 需求對應
+
+| 需求 | 對應實作 |
 | --- | --- |
 | 資料清理與移除 `年月 = 200912` | `prepare_data.py`, `src/preprocessing.py` |
 | Temporal validation | `create_splits.py`, `src/validation.py` |
-| Task 1: Decision Tree / ID3-like | `train_decision_tree.py`, `src/models.py`, `src/prediction.py` |
-| Task 2: 第二模型 | `train_task2_models.py`, `train_svr_ga.py` |
-| 投組建構與回測 | `build_portfolios.py`, `build_task2_portfolios.py`, `build_svr_ga_portfolios.py`, `src/portfolio.py` |
-| 報酬與風險指標 | `src/metrics.py`, `src/benchmark.py` |
-| Task 3: 財務資料爬蟲與重跑 | `run_external_crawler.py`, `rerun_external_pipeline.py`, `external_benchmark.py` |
-| Demo requirement | 目前提供 CLI demo：`demo.py`, `src/demo_runner.py`, `main.py demo`；Web demo 為規劃中 |
+| Task 1：Decision Tree / ID3-like | `train_decision_tree.py`, `build_portfolios.py`, `src/models.py`, `src/prediction.py` |
+| Task 2：第二種方法與比較 | `train_task2_models.py`, `build_task2_portfolios.py` |
+| Task 2 延伸：SVR-GA | `train_svr_ga.py`, `build_svr_ga_portfolios.py`, `src/svr_ga.py` |
+| 投組建構、報酬與風險評估 | `src/portfolio.py`, `src/metrics.py`, `src/benchmark.py` |
+| Task 3：外部資料抓取與重跑 | `run_external_crawler.py`, `rerun_external_pipeline.py`, `external_benchmark.py` |
+| 結果整併與視覺化 | `rebuild_all_models_portfolio_metrics.py`, `generate_all_model_png.py`, `generate_external_figures.py` |
+| CLI Demo | `demo.py`, `src/demo_runner.py` |
+| Web Demo | `web_demo.py`, `src/web_demo.py`, `src/project_dashboard.py`, `web/` |
 
-## 3. Task Design
+---
 
-### Task 1: Decision Tree Stock Selection
+## 4. 方法設計
 
-Task 1 使用 entropy-based Decision Tree 作為 ID3-like 分類器，將每一筆 stock-year observation 分成：
+### 4.1 預測目標
 
-- `ReturnMean_year_Label = 1`: 該股票報酬高於同年所有股票平均報酬
-- `ReturnMean_year_Label = -1`: 否則
+- 分類任務：
+  - `ReturnMean_year_Label = 1`：該股票年報酬高於同年平均
+  - `ReturnMean_year_Label = -1`：否則
+- 回歸任務：
+  - `Return`
 
-核心策略如下：
+### 4.2 Temporal validation
 
-- 使用 16 個財務/價值特徵作為輸入。
-- 以 `P(label = 1)` 作為選股分數。
-- 每年依分數排序，選出 Top-K 股票形成投資組合。
-- 輸出預測檔、分類指標、feature importance、決策樹規則與回測績效。
+本專案保留兩種切分方式：
 
-對應腳本：
+- `next_year`
+  - 逐年擴張式訓練，下一年做 out-of-sample 測試
+  - 目前主模型訓練、回測與比較結果主要使用此模式
+- `remaining_years`
+  - 以較早年份訓練，測試所有剩餘未來年份
+  - 較貼近報告或課堂 TV 圖的規格對照
 
-- `train_decision_tree.py`
-- `build_portfolios.py`
+### 4.3 選股與投組
 
-### Task 2: Alternative Models for the Same Stock-Selection Task
+- 排名依據：
+  - 分類模型：`score_label_1`
+  - SVR-GA：`predicted_return`
+- Top-K：
+  - `5`, `10`, `20`, `30`
+- 權重方式：
+  - `equal`
+  - `score`
+- 再平衡頻率：
+  - annual rebalancing
 
-Task 2 的目的是用非決策樹方法解相同選股問題，並與 Task 1 比較。本專案包含兩條線：
+### 4.4 交易成本假設
 
-- 分類模型比較：`logistic_regression`、`random_forest`、`gradient_boosting`
-- 延伸方法：`SVR-GA`，先預測連續報酬，再依 `predicted_return` 排名選股
+根據 `src/config.py`：
 
-分類線策略：
+- Buy fee = `0.0399%`
+- Sell fee = `0.0399%`
+- Sell tax = `0.3%`
 
-- 仍以 `ReturnMean_year_Label` 為預測目標。
-- 以 `score_label_1` 作為排序依據。
-- 比較不同模型在分類品質與投組績效上的差異。
+---
 
-SVR-GA 線策略：
-
-- 以 `Return` 為回歸目標。
-- 使用 genetic algorithm 搜尋 SVR 的 `C / gamma / epsilon`。
-- 依 `predicted_return` 由高到低選出 Top-K 股票。
-
-對應腳本：
-
-- `train_task2_models.py`
-- `build_task2_portfolios.py`
-- `train_svr_ga.py`
-- `build_svr_ga_portfolios.py`
-- `rebuild_all_models_portfolio_metrics.py`
-- `generate_all_model_png.py`
-
-### Task 3: Financial Data Crawling and Re-run
-
-Task 3 使用外部資料來源重建相似的年度財務資料集，再重新執行股票篩選與回測流程。
-
-本專案支援：
-
-- FinMind 為主要資料來源
-- yfinance 作為價格 fallback
-- 價格、PER/PBR、月營收、財報、資產負債表等資料抓取
-- 外部特徵重建、資料品質檢查、benchmark 比較與結果視覺化
-
-外部資料策略重點：
-
-- 以可公開取得的欄位近似原始 16 個特徵
-- 無法直接重建的欄位，以 proxy feature 補足
-- 對缺失率、可用性與特徵映射保留 metadata 與 quality report
-
-對應腳本：
-
-- `run_external_crawler.py`
-- `rerun_external_pipeline.py`
-- `external_benchmark.py`
-- `compare_external_benchmarks.py`
-- `generate_external_figures.py`
-- `build_external_metadata.py`
-
-## 4. End-to-End Strategy
-
-專案完整流程如下：
-
-1. 原始資料清理  
-   標準化欄名、修正 `年月`、移除 `200912`、轉換數值欄位、建立 `year` 欄位、檢查 label 與 return 合法性。
-
-2. Temporal validation 建立  
-   同時建立兩種 split：
-   - `next_year`: 擴張式單年 out-of-sample 測試
-   - `remaining_years`: 更貼近課堂 TV 圖的「訓練早期年份、測試剩餘所有未來年份」
-
-3. 模型訓練  
-   各 split 只使用歷史資料 fit model、imputer 與 scaler，不使用未來測試資料。
-
-4. 股票排序與 Top-K 選股  
-   - 分類模型：依 `score_label_1` 排序
-   - SVR-GA：依 `predicted_return` 排序
-
-5. 投資組合建構  
-   使用 annual rebalancing，支援：
-   - equal-weight
-   - score-weighted
-
-6. 績效與風險衡量  
-   至少包含：
-   - Annualized return
-   - Cumulative return
-   - Maximum drawdown
-
-   並額外提供：
-   - Volatility
-   - Sharpe ratio
-   - Win rate
-
-7. Benchmark 比較  
-   比較對象包含：
-   - all-stock equal-weight benchmark
-   - random Top-K benchmark
-   - external benchmark alignment
-
-## 5. Repository Structure
+## 5. 專案結構
 
 ```text
 proj3/
@@ -160,10 +117,10 @@ proj3/
 │  │  ├─ temporal_splits_next_year.csv
 │  │  └─ temporal_splits_remaining_years.csv
 │  └─ external/
-│     ├─ tickers.csv
 │     ├─ raw/
 │     ├─ processed/
-│     └─ metadata/
+│     ├─ metadata/
+│     └─ tickers.csv
 ├─ outputs/
 │  ├─ predictions/
 │  ├─ metrics/
@@ -171,12 +128,12 @@ proj3/
 │  ├─ portfolio/
 │  ├─ benchmarks/
 │  ├─ figures/
+│  ├─ model_reports/
 │  ├─ logs/
+│  ├─ demo/
 │  └─ external/
+├─ saved_models/
 ├─ src/
-│  ├─ config.py
-│  ├─ schema.py
-│  ├─ data_loader.py
 │  ├─ preprocessing.py
 │  ├─ validation.py
 │  ├─ models.py
@@ -185,9 +142,14 @@ proj3/
 │  ├─ metrics.py
 │  ├─ benchmark.py
 │  ├─ svr_ga.py
-│  ├─ visualization.py
 │  ├─ demo_runner.py
+│  ├─ web_demo.py
+│  ├─ project_dashboard.py
 │  └─ external/
+├─ web/
+│  ├─ index.html
+│  ├─ app.css
+│  └─ app.js
 ├─ prepare_data.py
 ├─ create_splits.py
 ├─ train_decision_tree.py
@@ -202,587 +164,443 @@ proj3/
 ├─ compare_external_benchmarks.py
 ├─ generate_external_figures.py
 ├─ build_external_metadata.py
+├─ rebuild_all_models_portfolio_metrics.py
 ├─ generate_all_model_png.py
 ├─ demo.py
+├─ web_demo.py
 ├─ main.py
-└─ requirements.txt
+└─ validate_*.py
 ```
 
-## 6. Key Modules
+---
 
-| 模組 | 功能 |
-| --- | --- |
-| `src/config.py` | 專案路徑、模型參數、交易成本、輸出位置設定 |
-| `src/schema.py` | 欄位 schema 與 canonical feature list |
-| `src/preprocessing.py` | 原始資料清理、欄名標準化、型別轉換、資料檢查 |
-| `src/validation.py` | temporal split 建立與 leakage 檢查 |
-| `src/models.py` | Decision Tree、LR、RF、GB pipeline 定義 |
-| `src/prediction.py` | 各模型逐 split 訓練、預測與 feature importance 輸出 |
-| `src/svr_ga.py` | SVR-GA 搜尋與回歸模型管線 |
-| `src/portfolio.py` | Top-K 選股、權重計算、投組年報酬計算 |
-| `src/metrics.py` | 分類指標、回歸指標、投組績效與風險指標 |
-| `src/benchmark.py` | all-stock 與 random Top-K benchmark |
-| `src/visualization.py` | 各任務圖表與比較圖 |
-| `src/demo_runner.py` | 新測試資料的 demo 預測流程 |
-| `src/external/*` | 外部資料抓取、proxy 特徵工程與資料集重建 |
-
-## 7. Environment and Installation
+## 6. 安裝環境
 
 建議環境：
 
-- Python 3.10+
+- Python `3.10+`
 
-安裝方式：
+安裝套件：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Task 3 若要啟用 yfinance fallback，請額外安裝：
+`requirements.txt` 目前保留的是實際使用到的必要套件：
 
-```bash
-pip install yfinance
-```
+- `pandas`
+- `numpy`
+- `scikit-learn`
+- `joblib`
+- `openpyxl`
+- `xlrd`
+- `matplotlib`
+- `pillow`
+- `requests`
+- `yfinance`
 
-若要使用 FinMind API，請設定 token：
-
-```bash
-set FINMIND_TOKEN=your_token_here
-```
-
-或在 PowerShell：
+若要執行 Task 3 的 `FinMind` 抓取，建議設定：
 
 ```powershell
 $env:FINMIND_TOKEN="your_token_here"
 ```
 
-## 8. How to Run
+若未設定 token，仍可用 cache / `yfinance` fallback，但資料完整度與可抓取量可能受限。
 
-### 8.1 Core Pipeline
+---
 
-1. 資料清理
+## 7. 快速開始
 
-```bash
-python prepare_data.py
-```
+### 7.1 直接開 Web Demo
 
-2. 建立 temporal validation splits
+如果你只是想快速看目前專案成果與互動展示，最簡單的方式是直接啟動 Web Demo：
 
 ```bash
-python create_splits.py
+py -3 web_demo.py --host 127.0.0.1 --port 8771
 ```
 
-3. Task 1: 訓練 Decision Tree
+或使用統一入口：
 
 ```bash
-python train_decision_tree.py
+py -3 main.py web-demo --host 127.0.0.1 --port 8771
 ```
 
-4. Task 1: 建立投組與 benchmark
+啟動後開啟：
+
+```text
+http://127.0.0.1:8771
+```
+
+Web Demo 會直接載入：
+
+- 專題總覽
+- 需求對照
+- 各模型排行榜
+- 既有圖表成果
+- 重要下載入口
+- 最新 Demo 快照
+- 上傳資料後的互動推論流程
+
+### 7.2 CLI Demo
 
 ```bash
-python build_portfolios.py
+py -3 demo.py --input path\to\new_testing_data.xlsx --model random_forest --top-k 10
 ```
 
-5. Task 2: 訓練分類模型
+或：
 
 ```bash
-python train_task2_models.py
+py -3 main.py demo --input path\to\new_testing_data.xlsx --model random_forest --top-k 10
 ```
 
-6. Task 2: 建立投組
+支援的 Demo 模型：
+
+- `decision_tree_entropy`
+- `logistic_regression`
+- `random_forest`
+- `gradient_boosting`
+
+### 7.3 統一入口 `main.py`
+
+`main.py` 目前提供四個常用入口：
 
 ```bash
-python build_task2_portfolios.py
+py -3 main.py external-crawl
+py -3 main.py external-rerun
+py -3 main.py demo --input path\to\file.xlsx
+py -3 main.py web-demo --port 8771
 ```
 
-7. Task 2 extension: 訓練 SVR-GA
+注意：`main.py` 不是所有腳本的總入口；完整重現主流程仍建議依第 8 節逐步執行各腳本。
+
+---
+
+## 8. 從頭重現完整主流程
+
+若你要重新生成主專題結果，建議依下列順序執行：
+
+### Step 1. 資料清理
 
 ```bash
-python train_svr_ga.py
+py -3 prepare_data.py
 ```
 
-8. Task 2 extension: 建立 SVR-GA 投組
+### Step 2. 建立 temporal splits
 
 ```bash
-python build_svr_ga_portfolios.py
+py -3 create_splits.py
 ```
 
-9. 重建 all-model comparison metrics
+### Step 3. Task 1：訓練 Decision Tree
 
 ```bash
-python rebuild_all_models_portfolio_metrics.py
+py -3 train_decision_tree.py
 ```
 
-10. 產生 all-model comparison 圖表
+### Step 4. Task 1：建立投組與 benchmark
 
 ```bash
-python generate_all_model_png.py
+py -3 build_portfolios.py
 ```
 
-### 8.2 Task 3: External Data Pipeline
-
-1. 抓取外部資料並重建外部資料集
+### Step 5. Task 2：訓練分類模型
 
 ```bash
-python run_external_crawler.py --source finmind --use-cache
+py -3 train_task2_models.py
 ```
 
-2. 在外部資料上重跑模型與投組
+### Step 6. Task 2：建立投組
 
 ```bash
-python rerun_external_pipeline.py
+py -3 build_task2_portfolios.py
 ```
 
-3. 建立外部 benchmark
+### Step 7. Task 2 延伸：訓練 SVR-GA
 
 ```bash
-python external_benchmark.py
+py -3 train_svr_ga.py
 ```
 
-4. 對齊外部 benchmark 並比較
+### Step 8. Task 2 延伸：建立 SVR-GA 投組
 
 ```bash
-python compare_external_benchmarks.py
+py -3 build_svr_ga_portfolios.py
 ```
 
-5. 產生外部圖表
+### Step 9. 重建全模型比較表
 
 ```bash
-python generate_external_figures.py
+py -3 rebuild_all_models_portfolio_metrics.py
 ```
 
-6. 產生 external metadata 與 data quality reports
+### Step 10. 產生全模型比較圖
 
 ```bash
-python build_external_metadata.py
+py -3 generate_all_model_png.py
 ```
 
-### 8.3 Demo Mode
+---
 
-目前版本的 demo 為 CLI 模式，可先驗證模型能否處理同格式的新測試資料。若後續改為 Web demo，可參考本文最後的 Web 架構設計章節。
+## 9. Task 3：外部資料流程
 
-對新測試資料執行 demo：
+### 9.1 抓取外部資料並重建外部資料集
 
 ```bash
-python demo.py --input path/to/new_testing_data.xlsx --model random_forest --top-k 10
+py -3 run_external_crawler.py --source finmind --use-cache
 ```
 
-也可透過統一入口：
+常用選項：
+
+- `--start-year`
+- `--end-year`
+- `--source {finmind,yfinance}`
+- `--use-cache`
+- `--force-refresh`
+- `--max-tickers`
+
+### 9.2 在外部資料上重跑模型與投組
 
 ```bash
-python main.py demo --input path/to/new_testing_data.xlsx --model random_forest --top-k 10
+py -3 rerun_external_pipeline.py
 ```
 
-如果新資料含有 `Return` / `ReturnMean_year_Label`，demo 會額外輸出投組報酬與績效；若沒有，則至少輸出預測與選股結果。
+### 9.3 建立 benchmark、對齊與圖表
 
-## 9. Main Output Files
+```bash
+py -3 external_benchmark.py
+py -3 compare_external_benchmarks.py
+py -3 generate_external_figures.py
+py -3 build_external_metadata.py
+```
 
-| 類別 | 位置 |
+若你只想透過統一入口跑主要外部流程：
+
+```bash
+py -3 main.py external-crawl --source finmind --use-cache
+py -3 main.py external-rerun
+```
+
+---
+
+## 10. 驗證與品質檢查
+
+本 repo 已提供明確的 validation scripts，用來確認輸出數量、切分邏輯、權重、圖表與模型檔是否正確。
+
+### 10.1 建議驗證順序
+
+```bash
+py -3 validate_splits.py
+py -3 validate_decision_tree.py
+py -3 validate_portfolios.py
+py -3 validate_task2.py
+py -3 validate_svr_ga.py
+py -3 validate_all_model_pngs.py
+```
+
+### 10.2 各驗證腳本檢查內容
+
+| 腳本 | 驗證內容 |
+| --- | --- |
+| `validate_splits.py` | `next_year` / `remaining_years` 切分數量、年份、rows、leakage-free |
+| `validate_decision_tree.py` | Task 1 predictions、metrics、feature importance、rules、saved models |
+| `validate_portfolios.py` | Task 1 selected stocks、權重和、portfolio rows、benchmarks |
+| `validate_task2.py` | Task 2 三個分類模型的 predictions / metrics / portfolio / saved models |
+| `validate_svr_ga.py` | SVR-GA predictions、GA search log、selection leakage、portfolio recomputation |
+| `validate_all_model_pngs.py` | 關鍵圖表是否存在且可開啟 |
+
+---
+
+## 11. Demo 輸入資料格式
+
+### 11.1 支援格式
+
+- `.csv`
+- `.xlsx`
+- `.xls`
+
+### 11.2 必要欄位
+
+- `stock_id`
+- `yearmonth`
+
+### 11.3 建議欄位
+
+- `stock_name`
+- `Return`
+- `ReturnMean_year_Label`
+- 其餘 16 個 canonical features
+
+### 11.4 Demo 行為
+
+- 若輸入只有 features：
+  - 仍可做推論與 Top-K 選股
+  - 不會計算 realized portfolio performance
+- 若輸入同時含 `Return`：
+  - 會額外輸出投組報酬與風險摘要
+- 若輸入同時含 `ReturnMean_year_Label`：
+  - 會額外輸出分類驗證指標
+
+### 11.5 Web Demo 與 CLI Demo 共用邏輯
+
+`src/demo_runner.py` 是 CLI / Web Demo 的共同核心，負責：
+
+- preprocessing
+- 模型載入或歷史 refit
+- prediction
+- Top-K ranking
+- portfolio summary
+- output persistence
+
+---
+
+## 12. Web Demo 實作架構
+
+目前 Web Demo 並不是規劃稿，而是已實作版本。
+
+### 12.1 前端
+
+- `web/index.html`
+- `web/app.css`
+- `web/app.js`
+
+### 12.2 後端
+
+- `web_demo.py`
+- `src/web_demo.py`
+- `src/project_dashboard.py`
+
+### 12.3 主要 API
+
+| Method | Path | 說明 |
+| --- | --- | --- |
+| `GET` | `/api/health` | 檢查資料與模型是否存在 |
+| `GET` | `/api/models` | 取得 Demo 可用模型 |
+| `GET` | `/api/project/overview` | 取得首頁儀表板資料 |
+| `POST` | `/api/demo/upload` | 上傳測試資料並做 preprocessing / 驗證 |
+| `POST` | `/api/demo/run` | 執行模型推論與 Top-K 選股 |
+| `GET` | `/api/demo/result/{run_id}` | 取得某次執行結果 |
+| `GET` | `/artifacts/...` | 讀取專案內圖表與輸出檔 |
+
+### 12.4 Web Demo 設計原則
+
+- 使用既有正式輸出檔做 dashboard 展示
+- 上傳流程與正式 preprocessing 對齊
+- 優先載入已保存模型；沒有對應年度模型時才使用歷史資料 refit
+- 不使用 realized return 做選股排序，避免 selection leakage
+
+---
+
+## 13. 主要輸出檔
+
+| 類別 | 路徑 |
 | --- | --- |
 | 清理後資料 | `data/processed/cleaned_top200.csv` |
-| Temporal splits | `data/processed/temporal_splits_*.csv` |
+| Temporal splits | `data/processed/temporal_splits_next_year.csv`, `data/processed/temporal_splits_remaining_years.csv` |
 | Task 1 predictions | `outputs/predictions/decision_tree_predictions.csv` |
 | Task 2 predictions | `outputs/predictions/task2_classification_predictions.csv` |
 | SVR-GA predictions | `outputs/predictions/svr_ga_regression_predictions.csv` |
-| 投組績效 | `outputs/portfolio/*.csv` |
+| 主投組指標 | `outputs/portfolio/*.csv` |
 | Benchmark | `outputs/benchmarks/*.csv` |
-| 圖表 | `outputs/figures/**` |
+| Task 1 tree rules | `outputs/model_reports/decision_tree_rules/*.txt` |
+| 主圖表 | `outputs/figures/**` |
 | External outputs | `outputs/external/**` |
 | Demo outputs | `outputs/demo/**` |
+| Saved models | `saved_models/*.joblib` |
 
-## 10. Modeling and Portfolio Assumptions
+---
 
-- 移除 `年月 = 200912`
-- `Return` 為百分比值，投組計算時除以 `100`
-- `ReturnMean_year_Label` 定義為是否高於同年平均報酬
-- Top-K 設定：`[5, 10, 20, 30]`
-- 調整頻率：annual rebalancing
-- 部位限制：long-only, no short-selling, no leverage
-- 權重方式：
-  - `equal`
-  - `score`
-- 交易成本 round-trip：
-  - buy fee = `0.0399%`
-  - sell fee = `0.0399%`
-  - sell tax = `0.3%`
+## 14. 重要模組說明
 
-## 11. Notes on Temporal Validation
+| 模組 | 功能 |
+| --- | --- |
+| `src/config.py` | 路徑、模型參數、Top-K、交易成本、輸出位置 |
+| `src/schema.py` | 欄位 schema 與 feature list |
+| `src/preprocessing.py` | 欄名標準化、數值清理、yearmonth 處理、資料整理 |
+| `src/validation.py` | temporal split 建立與 leakage 檢查 |
+| `src/models.py` | Decision Tree、LR、RF、GB pipelines |
+| `src/prediction.py` | 訓練 / 預測 / 分數輸出 |
+| `src/svr_ga.py` | GA 搜尋 SVR 參數與回歸訓練 |
+| `src/portfolio.py` | 選股、權重計算、投組報酬 |
+| `src/metrics.py` | 分類 / 回歸 / 投組績效與風險指標 |
+| `src/benchmark.py` | all-stock 與 random Top-K benchmarks |
+| `src/demo_runner.py` | CLI / Web Demo 共用核心 |
+| `src/project_dashboard.py` | Dashboard 資料彙整與結果摘要 |
+| `src/web_demo.py` | Web API 與靜態頁面服務 |
+| `src/external/*` | 外部資料抓取、映射、特徵工程、資料集重建 |
 
-本專案保留兩種 temporal validation 設計：
+---
 
-- `remaining_years`  
-  更貼近需求書與課堂 TV 圖的概念：用較早年份訓練，測試所有剩餘未來年份。
+## 15. 報告撰寫時應注意的規格說明
 
-- `next_year`  
-  更適合逐年回測、年度投資期比較與投組績效對照，因此目前主要模型輸出與投組回測多使用此模式。
+### 15.1 主回測模式
 
-若要做嚴格的規格對齊報告，建議在書面報告中清楚說明兩者差異與用途。
+目前主回測結果以 `next_year` 為主，因為它最適合逐年投資期比較與 Demo 展示。
 
-## 12. Notes on Reproducibility
+若你要寫正式報告，建議明確說明：
 
-- `train_decision_tree.py`、`train_task2_models.py`、`train_svr_ga.py` 會在執行時輸出 `.joblib` 模型檔到 `saved_models/`
-- 若 `saved_models/` 不存在，請重新執行對應訓練腳本
-- Task 3 的外部特徵部分為 proxy reconstruction，與原始資料欄位定義可能不完全相同，已透過 metadata 與 quality report 進行說明
+- `remaining_years`：較貼近課程 TV 規格圖
+- `next_year`：較適合年度投資回測與 Top-K 策略比較
 
-## 13. Deliverables Suggested by This Repository
+### 15.2 External dataset 的性質
 
-本 repo 可支援下列交付物準備：
+Task 3 的外部資料不是原始教學資料的逐欄完全複製，而是：
 
-- Source code
-- Word report 的方法、流程、結果與圖表來源
-- Demo 展示時的可執行流程
-- Task 3 的資料來源、特徵映射與外部實驗結果
+- 盡量使用公開來源重建相似欄位
+- 對缺失嚴重或無法完全對應的欄位使用 proxy features
+- 保留 metadata 與 data quality reports 解釋限制
 
-若要正式繳交，建議搭配：
+### 15.3 Reproducibility
 
-- 書面報告
-- Demo PPT
-- 最終整理後的 zip 檔
+此 repo 已具備：
 
-## 14. Unfinished Items and Recommended Next Steps
+- 明確資料路徑
+- 固定輸出位置
+- validation scripts
+- saved models
+- demo artifacts
 
-以下項目屬於目前專案中「尚未完全完成」或「已具備基礎，但仍建議補強」的部分。這些內容特別對應需求書中的規範符合度、可重現性與 demo 展示穩定性。
+若已執行外部資料重跑，還會額外產生 external rerun 對應輸出與外部模型 artifacts。
 
-### 14.1 Temporal Validation 主結果尚未完全對齊需求書 TV 圖
+因此可作為：
 
-現況：
+- code submission
+- report 附錄說明來源
+- demo 展示環境
 
-- 專案已同時產生 `next_year` 與 `remaining_years` 兩種 temporal splits。
-- 目前主要訓練、投組與比較結果多以 `next_year` 為主。
+---
 
-待補強方向：
+## 16. 建議使用方式
 
-- 補做一條以 `remaining_years` 為主的完整主實驗流程。
-- 在報告中清楚區分：
-  - `remaining_years` 用於對齊課堂 TV 規格
-  - `next_year` 用於逐年投資期回測與 Top-K 投組分析
-- 若時間允許，將兩種 validation 的結果並列表格化比較。
+### 若你要看結果
 
-### 14.2 Saved Models 與可重現 artifact 仍需整理完整
+直接開 Web Demo：
 
-現況：
-
-- 訓練腳本具備輸出 `.joblib` 模型的能力。
-- 若未重新執行訓練，`saved_models/` 可能不存在或不完整。
-
-待補強方向：
-
-- 重新執行各訓練腳本，確保每個 split 都有對應模型檔。
-- 讓 `validate_decision_tree.py`、`validate_task2.py`、`validate_svr_ga.py` 能完整通過。
-- 在最終繳交前確認：
-  - model files
-  - rules files
-  - predictions
-  - metrics
-  - portfolio outputs
-  - figures
-  均能由程式重新生成。
-
-### 14.3 Demo 前處理仍應與正式訓練流程完全對齊
-
-現況：
-
-- 專案已有可用的 CLI demo。
-- 但 demo 的新資料前處理流程仍可進一步與正式訓練前處理完全統一。
-
-待補強方向：
-
-- 將 demo 的欄位清理、數值轉換、缺失處理規則與 `src/preprocessing.py` 再做一致化整理。
-- 避免 demo 測試資料在遇到：
-  - `%`
-  - 千分位逗號
-  - 欄名空白差異
-  - `年月` 格式差異
-  時，與主訓練流程出現不一致行為。
-- 最理想的做法是將 demo preprocessing 與 training preprocessing 共用同一套函式邏輯。
-
-### 14.4 Task 3 外部特徵仍有 proxy 性質，可持續精煉
-
-現況：
-
-- 已可從 FinMind / yfinance 重建外部資料集。
-- 但部分欄位屬於 proxy feature，而非與原始課堂資料完全同義。
-
-待補強方向：
-
-- 逐欄檢查原始 16 features 與 external feature mapping 的語義差異。
-- 優先補強下列類型欄位：
-  - valuation ratios
-  - growth rates
-  - turnover ratios
-  - profitability features
-- 若可找到更接近原始定義的公開資料來源，可建立第二版 external dataset。
-- 在報告中對 proxy 欄位明確標註其假設與限制。
-
-### 14.5 報告與繳交物仍需補齊正式版本
-
-現況：
-
-- 本 repo 目前主要聚焦於 source code、結果輸出與可執行流程。
-- Word report、Demo PPT、最終 zip 組織仍需另行完成。
-
-待補強方向：
-
-- 依需求書補齊下列報告章節：
-  1. Problem definition and dataset description
-  2. Data preprocessing and feature handling
-  3. Decision-tree model design and results
-  4. Second model design and results
-  5. Web crawler design, data source, and re-run results
-  6. Performance comparison and discussion
-  7. Individual contribution of each group member
-  8. What you learned from this project and this course
-  9. Suggestions for improving the course
-- 將 README、主要結果表、代表圖表與 demo 流程整理成 PPT。
-- 最終將 source code、report、PPT 依繳交要求打包。
-
-### 14.6 Web Demo 尚未實作，建議作為最終展示型態
-
-現況：
-
-- 目前已具備 CLI demo 流程。
-- Web 介面尚未實作。
-
-待補強方向：
-
-- 將現有 demo pipeline 包裝為 Web 化的資料上傳、模型選擇、預測與視覺化流程。
-- Web 版本不必一開始就涵蓋所有功能，建議先完成最核心的 demo 路徑：
-  - 上傳檔案
-  - 選擇模型
-  - 執行推論
-  - 顯示 Top-K 結果與績效摘要
-
-## 15. Planned Web Demo Architecture
-
-本節為 Web demo 規劃。目標是將目前 CLI demo 提升為更直觀、可展示、適合期末簡報現場操作的介面。
-
-### 15.1 Web Demo Goals
-
-- 讓使用者上傳與原始格式相同的新測試資料。
-- 在頁面上選擇模型與 Top-K 參數。
-- 執行推論並回傳：
-  - 預測結果
-  - 選股結果
-  - 若資料含真實 `Return`，則回傳投組績效摘要
-- 讓 demo 過程清楚呈現資料進入、模型推論、選股與績效解讀的完整鏈路。
-
-### 15.2 Scope of the First Web Version
-
-建議第一版只涵蓋最必要功能：
-
-- Dataset upload
-- Model selection
-- Top-K selection
-- Inference trigger
-- Prediction table
-- Selected stocks table
-- Basic summary cards
-
-以下功能可列為第二階段：
-
-- 圖表互動化
-- 多模型同時比較
-- 外部資料 Task 3 線上重跑
-- 使用者登入與歷史紀錄管理
-
-### 15.3 Suggested User Flow
-
-1. 使用者進入首頁。
-2. 選擇 demo 模型。
-3. 上傳 `.xlsx` 或 `.csv` 測試資料。
-4. 系統先檢查欄位格式與必要欄位。
-5. 驗證通過後，使用者按下「開始分析」。
-6. 後端執行 preprocessing、prediction、Top-K ranking。
-7. 頁面顯示：
-   - 基本資料摘要
-   - 預測結果表
-   - Top-K 選股表
-   - 若有真實報酬，則顯示投組績效摘要
-8. 使用者可下載結果 CSV 或切換模型重新測試。
-
-### 15.4 Suggested System Architecture
-
-```mermaid
-flowchart LR
-    U["User"] --> F["Web Frontend"]
-    F --> A["API Layer"]
-    A --> V["Input Validation"]
-    V --> P["Preprocessing Service"]
-    P --> M["Model Inference Service"]
-    M --> R["Ranking and Portfolio Service"]
-    R --> O["Result Formatter"]
-    O --> F
-    M --> S["Saved Models / Model Registry"]
-    P --> D["Temporary Uploaded Dataset"]
+```bash
+py -3 web_demo.py --port 8771
 ```
 
-### 15.5 Frontend Design Proposal
+### 若你要重新訓練
 
-建議前端頁面分成四個區塊：
+依第 8 節從 `prepare_data.py` 開始完整重跑。
 
-1. Upload Panel  
-   顯示檔案上傳元件、格式說明、欄位需求與驗證狀態。
+### 若你要做期末展示
 
-2. Model Control Panel  
-   讓使用者選擇：
-   - `decision_tree_entropy`
-   - `logistic_regression`
-   - `random_forest`
-   - `gradient_boosting`
+建議使用：
 
-   並設定：
-   - `Top-K`
-   - 是否輸出詳細預測表
+- Web Demo 顯示 dashboard 與既有結果
+- 再用一份測試資料做即時上傳展示
 
-3. Result Summary Panel  
-   以卡片形式顯示：
-   - 檔案筆數
-   - 測試年份
-   - 預測股票數
-   - Top-K 清單
-   - 若可評估則顯示 annualized return / cumulative return / max drawdown
+### 若你要做報告
 
-4. Detailed Result Panel  
-   顯示：
-   - 預測表
-   - 選股表
-   - 投組績效表
-   - 錯誤與警告訊息
+建議引用：
 
-### 15.6 Backend Layer Design
+- `outputs/portfolio/*.csv`
+- `outputs/metrics/*.csv`
+- `outputs/figures/**`
+- `outputs/external/**`
 
-建議後端採用「薄 API 層 + 現有分析模組」的方式，避免重寫既有核心邏輯。
+---
 
-建議邏輯分層如下：
+## 17. License / Note
 
-- API Layer  
-  處理 HTTP request、回傳 JSON、管理任務狀態。
-
-- Validation Layer  
-  檢查欄位、格式、資料型態與檔案大小。
-
-- Preprocessing Layer  
-  將 Web upload 的資料整理成與 CLI demo 一致的格式。
-
-- Inference Layer  
-  根據使用者選擇的模型載入 saved model 或重新 fit historical data 後推論。
-
-- Portfolio Layer  
-  進行 Top-K ranking、權重計算與績效摘要。
-
-- Serialization Layer  
-  將 DataFrame 轉換為前端可讀的 JSON response。
-
-### 15.7 Suggested API Design
-
-建議的 API 介面如下：
-
-| Method | Path | Purpose |
-| --- | --- | --- |
-| `POST` | `/api/demo/upload` | 上傳測試資料並做基本驗證 |
-| `POST` | `/api/demo/run` | 指定模型與 Top-K，執行推論 |
-| `GET` | `/api/demo/result/{job_id}` | 取得該次 demo 的結果 |
-| `GET` | `/api/demo/models` | 取得可用模型列表 |
-| `GET` | `/api/health` | 檢查服務是否正常 |
-
-### 15.8 Model Serving Strategy
-
-Web demo 的模型服務有兩種策略：
-
-策略 A：直接載入預先訓練模型
-
-- 優點：速度快，適合 demo 現場
-- 缺點：需確保 `saved_models/` 完整且版本一致
-
-策略 B：依 demo 年份重新用歷史資料訓練
-
-- 優點：邏輯更貼近目前 CLI demo 設計
-- 缺點：耗時較長，現場展示風險較高
-
-建議：
-
-- Demo 現場優先採策略 A
-- 保留策略 B 作為研究模式或備援模式
-
-### 15.9 Error Handling Design
-
-Web demo 應主動處理以下錯誤情境：
-
-- 上傳檔案格式錯誤
-- 缺少必要欄位
-- `年月` 無法解析
-- 特徵欄位大量缺失
-- 模型檔不存在
-- 推論失敗
-- 投組績效無法計算
-
-頁面上不應只顯示 traceback，而應提供人類可讀的說明，例如：
-
-- 缺少哪些欄位
-- 哪一個欄位格式不正確
-- 建議使用者如何修正資料後重新上傳
-
-### 15.10 Result Presentation Design
-
-若資料只有 features，沒有 `Return` / `ReturnMean_year_Label`：
-
-- 顯示 prediction table
-- 顯示 Top-K selected stocks
-- 不顯示真實績效，只提示「此資料不含真實報酬欄位，因此無法計算 realized performance」
-
-若資料同時含有真實欄位：
-
-- 顯示 prediction table
-- 顯示 Top-K selected stocks
-- 顯示 portfolio return summary
-- 顯示簡化版風險指標與績效卡片
-
-### 15.11 Suggested Deployment Architecture
-
-若僅作課堂 demo，可採簡化部署：
-
-- Frontend: 單頁式 Web UI
-- Backend: 一個 Python API service
-- Runtime: 本機或同一台 demo 筆電
-- Storage: 本地暫存 uploaded files 與 result cache
-
-若之後要對外展示，可再升級為：
-
-- reverse proxy
-- persistent result storage
-- model registry
-- job queue
-
-### 15.12 Recommended Tech Stack
-
-僅作設計建議，不代表本階段必須實作：
-
-- Frontend：
-  - React
-  - Next.js
-  - 或任何熟悉的單頁框架
-
-- Backend：
-  - FastAPI
-  - Flask
-
-- Data handling：
-  - 直接重用目前 `src/` 下的分析模組
-
-- Charting：
-  - ECharts
-  - Plotly
-  - 或前端表格搭配靜態圖
-
-### 15.13 Minimum Viable Web Demo
-
-若時間有限，建議最小可展示版本只做以下內容：
-
-1. 上傳 `.xlsx/.csv`
-2. 選模型與 Top-K
-3. 顯示前 10 名選股結果
-4. 顯示預測總表下載連結
-5. 若資料含真實報酬，顯示簡化版績效摘要
-
-這樣即可在不過度擴張工作量的前提下，完成一個適合期末 demo 的 Web 化展示流程。
+本專案為課程專題實作，資料來源與外部資料使用方式請依課堂規範、資料來源條款與實際使用情境自行確認。

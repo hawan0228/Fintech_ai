@@ -1,0 +1,26 @@
+========== Demo 設定檔 ==========
+輸入檔案：C:\Users\user\Documents\project\proj3\tmp\web_uploads\68b723fd0cc0.xlsx
+模型：random_forest
+Top-K: 10
+Demo 年度：[2010, 2011, 2012, 2013, 2014, 2015]
+原始/可用筆數：1200 / 1200
+含 Return：True
+含 Label：True
+預測筆數：1200
+入選筆數：60
+
+各年度模型來源：
+- 2010: split_id=0, source=historical_refit_before_2010
+- 2011: split_id=0, source=historical_refit_before_2011
+- 2012: split_id=0, source=historical_refit_before_2012
+- 2013: split_id=0, source=historical_refit_before_2013
+- 2014: split_id=0, source=historical_refit_before_2014
+- 2015: split_id=0, source=historical_refit_before_2015
+
+輸出檔案：
+- predictions: C:\Users\user\Documents\project\proj3\outputs\demo\demo_predictions.csv
+- selected_stocks: C:\Users\user\Documents\project\proj3\outputs\demo\demo_selected_stocks.csv
+- portfolio_returns: C:\Users\user\Documents\project\proj3\outputs\demo\demo_portfolio_returns.csv
+- metrics: C:\Users\user\Documents\project\proj3\outputs\demo\demo_metrics.csv
+- profile: C:\Users\user\Documents\project\proj3\outputs\demo\demo_profile.txt
+========== Demo 設定檔結束 ==========

@@ -89,7 +89,8 @@ def build_random_forest_pipeline() -> Pipeline:
                     max_features=RF_MAX_FEATURES,
                     class_weight=RF_CLASS_WEIGHT,
                     random_state=RANDOM_SEED,
-                    n_jobs=-1,
+                    # Keep the project runnable on restricted Windows environments.
+                    n_jobs=1,
                 ),
             ),
         ]

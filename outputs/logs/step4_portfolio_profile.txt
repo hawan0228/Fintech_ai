@@ -42,13 +42,13 @@ random_topk_equal_weight     20     500                      0.023732           
 random_topk_equal_weight     30     500                      0.025916                   -0.016035                     0.064721                    0.021793                 -0.020150                   0.060607
 
 Generated files:
-- Selected stocks: C:\Users\user\Documents\project\FineTech\outputs\selections\decision_tree_selected_stocks.csv
-- Portfolio annual returns: C:\Users\user\Documents\project\FineTech\outputs\portfolio\decision_tree_portfolio_returns.csv
-- Portfolio metrics: C:\Users\user\Documents\project\FineTech\outputs\portfolio\decision_tree_portfolio_metrics.csv
-- All-stock benchmark annual returns: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\all_stock_benchmark_annual_returns.csv
-- All-stock benchmark metrics: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\all_stock_benchmark_metrics.csv
-- Random benchmark runs: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_runs.csv
-- Random benchmark annual mean: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_annual_mean.csv
-- Random benchmark summary: C:\Users\user\Documents\project\FineTech\outputs\benchmarks\random_topk_benchmark_summary.csv
+- Selected stocks: C:\Users\user\Documents\project\proj3\outputs\selections\decision_tree_selected_stocks.csv
+- Portfolio annual returns: C:\Users\user\Documents\project\proj3\outputs\portfolio\decision_tree_portfolio_returns.csv
+- Portfolio metrics: C:\Users\user\Documents\project\proj3\outputs\portfolio\decision_tree_portfolio_metrics.csv
+- All-stock benchmark annual returns: C:\Users\user\Documents\project\proj3\outputs\benchmarks\all_stock_benchmark_annual_returns.csv
+- All-stock benchmark metrics: C:\Users\user\Documents\project\proj3\outputs\benchmarks\all_stock_benchmark_metrics.csv
+- Random benchmark runs: C:\Users\user\Documents\project\proj3\outputs\benchmarks\random_topk_benchmark_runs.csv
+- Random benchmark annual mean: C:\Users\user\Documents\project\proj3\outputs\benchmarks\random_topk_benchmark_annual_mean.csv
+- Random benchmark summary: C:\Users\user\Documents\project\proj3\outputs\benchmarks\random_topk_benchmark_summary.csv
 
 ========== End of Step 4 Profile ==========

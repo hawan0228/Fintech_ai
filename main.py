@@ -23,6 +23,10 @@ COMMANDS = {
         sys.executable,
         "rebuild_all_models_portfolio_metrics.py",
     ],
+    "web-demo": [
+        sys.executable,
+        "web_demo.py",
+    ],
 }
 
 
@@ -58,6 +62,13 @@ def main() -> None:
     demo_parser.add_argument("--input", required=True)
     demo_parser.add_argument("--model", default="random_forest")
     demo_parser.add_argument("--top-k", type=int, default=10)
+
+    web_demo_parser = subparsers.add_parser(
+        "web-demo",
+        help="Run the interactive web demo.",
+    )
+    web_demo_parser.add_argument("--host", default="127.0.0.1")
+    web_demo_parser.add_argument("--port", type=int, default=8000)
 
     args, unknown_args = parser.parse_known_args()
 
