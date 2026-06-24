@@ -15,3 +15,8 @@ pillow
 # External data pipeline
 requests
 yfinance
+
+# Web demo (FastAPI 後端 + 單頁前端)
+fastapi
+uvicorn
+python-multipart

@@ -9,6 +9,7 @@ import pandas as pd
 from src.config import (
     CLEANED_DATA_PATH,
     TOP_K_LIST,
+    DROP_YEARMONTH,
     DEMO_PREDICTIONS_PATH,
     DEMO_SELECTED_STOCKS_PATH,
     DEMO_PORTFOLIO_RETURNS_PATH,
@@ -50,6 +51,15 @@ def prepare_demo_data(path: str | Path) -> pd.DataFrame:
     df = load_table(path)
     df = standardize_column_names(df)
     df = create_year_column(df)
+
+    # 依規格移除 年月 = 200912（與正式訓練前處理 remove_200912 一致）。
+    # 這批為特殊無效列（Return 多為 -100），若保留會破壞投組績效計算。
+    if YEARMONTH_COL in df.columns:
+        ym = pd.to_numeric(df[YEARMONTH_COL], errors="coerce")
+        n_dropped = int((ym == DROP_YEARMONTH).sum())
+        if n_dropped:
+            df = df[ym != DROP_YEARMONTH].copy()
+            print(f"[Info] Demo: 已移除 年月={DROP_YEARMONTH} 的資料 {n_dropped} 筆")
 
     if STOCK_ID_COL not in df.columns:
         raise ValueError(f"Demo data 缺少欄位：{STOCK_ID_COL}")
